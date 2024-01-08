@@ -6,10 +6,10 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-	<c:import url="../temps/bootStrap_js.css"></c:import>
+	<c:import url="./temps/bootStrap_css.jsp"></c:import>
 </head>
 <body>
-	<c:import url="../temps/header.jsp"></c:import>
+	<c:import url="./temps/header.jsp"></c:import>
 	
 	<h1>Product List</h1>
 	
@@ -24,19 +24,13 @@
 			</tr>
 		</thead>
 		<tbody>
-			<tr>
-				<td>${}</td>
-				<td>${}</td>
-				<td>${}</td>
-				<td>${}</td>
-				<td>${}</td>
-			</tr>
+
 		</tbody>
 	
 	</table>
 	
 	
 	
-	<c:import url="../temps/bootStrap_js.jsp"></c:import>
+	<c:import url="./temps/bootStrap_js.jsp"></c:import>
 </body>
 </html>

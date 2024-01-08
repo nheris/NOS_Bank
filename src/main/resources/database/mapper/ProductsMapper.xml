@@ -4,8 +4,12 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
 <!-- namespace 비우면 에러 -->
-<mapper namespace="sample">
+<mapper namespace="com.winter.app.products.ProductDAO">
+
+	<!-- list -->
+	<select id="getList" resultType="ProductDTO">
+		SELECT *
+		FROM PRODUCT
+	</select>
 
 </mapper>
-
-	
