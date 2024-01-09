@@ -2,16 +2,17 @@ package com.winter.app.products;
 
 public class ProductDTO {
 	
-	private Integer productNum;
+	private Long productNum;
 	private String productName;
 	private String productContents;
-	private double productRate;
-	private double productJumsu;
+	private Double productRate;
+	private Double productJumsu;
 	
-	public Integer getProductNum() {
+	
+	public Long getProductNum() {
 		return productNum;
 	}
-	public void setProductNum(Integer productNum) {
+	public void setProductNum(Long productNum) {
 		this.productNum = productNum;
 	}
 	public String getProductName() {
@@ -26,16 +27,18 @@ public class ProductDTO {
 	public void setProductContents(String productContents) {
 		this.productContents = productContents;
 	}
-	public double getProductRate() {
+	public Double getProductRate() {
 		return productRate;
 	}
-	public void setProductRate(double productRate) {
+	public void setProductRate(Double productRate) {
 		this.productRate = productRate;
 	}
-	public double getProductJumsu() {
+	public Double getProductJumsu() {
 		return productJumsu;
 	}
-	public void setProductJumsu(double productJumsu) {
+	public void setProductJumsu(Double productJumsu) {
 		this.productJumsu = productJumsu;
 	}
+	
+	
 }

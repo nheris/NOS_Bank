@@ -6,10 +6,10 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-	<c:import url="./temps/bootStrap_css.jsp"></c:import>
+	<c:import url="../temps/bootStrap_css.jsp"></c:import>
 </head>
 <body>
-	<c:import url="./temps/header.jsp"></c:import>
+	<c:import url="../temps/header.jsp"></c:import>
 	
 	<h1>Product List</h1>
 	
@@ -18,19 +18,25 @@
 			<tr>
 				<th>상품번호</th>
 				<th>상품명</th>
-				<th>상품설명</th>
 				<th>이자율</th>
 				<th>평점</th>
 			</tr>
 		</thead>
 		<tbody>
-
+			<c:forEach items="${requestScope.list}" var="dto">
+				<tr>
+					<td>${requestScope.dto.productNum}</td>
+					<td>${dto.productName}</td>
+					<td>${dto.productRate}</td>
+					<td>${dto.productJumsu}</td>
+				</tr>
+			</c:forEach>
 		</tbody>
 	
 	</table>
 	
 	
 	
-	<c:import url="./temps/bootStrap_js.jsp"></c:import>
+	<c:import url="../temps/bootStrap_js.jsp"></c:import>
 </body>
 </html>
