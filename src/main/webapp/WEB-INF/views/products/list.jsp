@@ -14,7 +14,7 @@
 	<h1>Product List</h1>
 	
 	<table class="table table-hover">
-		<thead>
+		<thead class="table-light">
 			<tr>
 				<th>상품번호</th>
 				<th>상품명</th>
@@ -25,7 +25,7 @@
 		<tbody>
 			<c:forEach items="${requestScope.list}" var="dto">
 				<tr>
-					<td>${requestScope.dto.productNum}</td>
+					<td>${pageScope.dto.productNum}</td>
 					<td>${dto.productName}</td>
 					<td>${dto.productRate}</td>
 					<td>${dto.productJumsu}</td>
@@ -35,7 +35,7 @@
 	
 	</table>
 	
-	
+	<a href="./add" class="btn btn-primary">Add</a>
 	
 	<c:import url="../temps/bootStrap_js.jsp"></c:import>
 </body>

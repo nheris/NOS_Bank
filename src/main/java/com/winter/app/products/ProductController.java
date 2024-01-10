@@ -26,4 +26,9 @@ public class ProductController {
 		return mv;
 	}
 	
+	@RequestMapping (value = "add", method = RequestMethod.GET)
+	public String add() {
+		return "products/add";
+	}
+	
 }
