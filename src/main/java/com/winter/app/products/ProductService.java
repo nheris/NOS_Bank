@@ -16,4 +16,11 @@ public class ProductService {
 		List<ProductDTO> ar = productDAO.getList();
 		return ar;
 	}
+	
+	//add
+	public int add(ProductDTO productDTO) {
+		int result = productDAO.add(productDTO);
+		return result;
+		
+	}
 }

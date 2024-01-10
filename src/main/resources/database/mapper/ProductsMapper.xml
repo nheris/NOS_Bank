@@ -11,5 +11,10 @@
 		SELECT *
 		FROM PRODUCT
 	</select>
-
+	
+	<!-- add -->
+	<insert id="add" parameterType="ProductDTO">
+		INSERT INTO PRODUCT
+		VALUES (PRODUCT_SEQ.NEXTVAL, #{productName},#{productContents},#{productRate},#{productJumsu})
+	</insert>
 </mapper>

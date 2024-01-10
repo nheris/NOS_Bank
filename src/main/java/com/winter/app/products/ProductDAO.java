@@ -17,4 +17,8 @@ public class ProductDAO {
 	public List<ProductDTO> getList() {
 		return sqlSession.selectList(namespace+"getList");
 	}
+	
+	public int add(ProductDTO productDTO) {
+		return sqlSession.insert(namespace+"add", productDTO);
+	}
 }

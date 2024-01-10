@@ -32,7 +32,16 @@ public class ProductController {
 		return "products/add";
 	}
 	@RequestMapping (value = "add", method = RequestMethod.POST)
-	public void add(ProductDTO productDTO, Model model) {
+	public String add(ProductDTO productDTO, ModelAndView mv) {
+		int result = productService.add(productDTO);
+		String msg ="등록 실패. 다시 시도해 주세요.";
+		if(result ==1) {
+			msg = "등록 되었습니다.";
+		}
+		mv.addObject("msg", msg);
+		mv.addObject("path","./list");
+		
+		return "commons/result";
 		
 	}
 }
