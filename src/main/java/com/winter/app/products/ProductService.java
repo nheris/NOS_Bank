@@ -37,12 +37,12 @@ public class ProductService {
 		
 		String[] filename = fileManager.fileSave(path, file);
 		
-		ProductFileDTO productFileDTO = new ProductFileDTO();
-		productFileDTO.setFileName(filename);
-		productFileDTO.setOriName(file.getOriginalFilename());
-		productFileDTO.setProductNum(file.getpro);
-		
-		productDAO.addFile()
+//		ProductFileDTO productFileDTO = new ProductFileDTO();
+//		productFileDTO.setFileName(filename);
+//		productFileDTO.setOriName(file.getOriginalFilename());
+//		productFileDTO.setProductNum(file.getpro);
+//		
+//		productDAO.addFile()
 		
 		return result;
 		
