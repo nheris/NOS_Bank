@@ -14,11 +14,11 @@ public class ProductDAO {
 	private final String namespace="com.winter.app.products.ProductDAO.";
 	
 	
-	public List<ProductDTO> getList() {
+	public List<ProductDTO> getList() throws Exception{
 		return sqlSession.selectList(namespace+"getList");
 	}
 	
-	public int add(ProductDTO productDTO) {
+	public int add(ProductDTO productDTO) throws Exception {
 		return sqlSession.insert(namespace+"add", productDTO);
 	}
 }

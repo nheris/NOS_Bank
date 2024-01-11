@@ -7,7 +7,7 @@ import com.winter.app.MyTest;
 
 public class ProductDAOTest extends MyTest{
 	@Autowired
-	ProductDAO productDAO;
+	private ProductDAO productDAO;
 	
 	@Test
 	public void addTest() throws Exception{

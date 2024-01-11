@@ -16,7 +16,7 @@ public class ProductController {
 	private ProductService productService;
 	
 	@RequestMapping(value = "list", method = RequestMethod.GET)
-	public ModelAndView getList() {
+	public ModelAndView getList() throws Exception {
 		ModelAndView mv= new ModelAndView();
 		
 		List<ProductDTO> ar = productService.getList();
@@ -32,7 +32,7 @@ public class ProductController {
 		return "products/add";
 	}
 	@RequestMapping (value = "add", method = RequestMethod.POST)
-	public String add(ProductDTO productDTO, ModelAndView mv) {
+	public String add(ProductDTO productDTO, ModelAndView mv) throws Exception {
 		int result = productService.add(productDTO);
 		String msg ="등록 실패. 다시 시도해 주세요.";
 		if(result ==1) {
