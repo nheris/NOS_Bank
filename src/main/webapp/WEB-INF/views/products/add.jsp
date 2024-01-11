@@ -17,7 +17,7 @@
 	
 	<section id="contents" class="container-fluid">
 		<div class="row mt-4">
-			<form action="./add" method="post">
+			<form action="./add" method="post" enctype="multipart/form-data">
 				<div class="mb-3">
 					<label for="productName" class="form-label">상품명</label>
 					<input type="text" class="form-control" id="name" name="productName">
@@ -28,22 +28,26 @@
 				</div>
 				<div class="mb-3">
 					<label for="productRate" class="form-label">이자율</label>
-					<input type="text" class="form-control" id="rate" name="productRate">
+					<input type="number" class="form-control" id="rate" name="productRate">
 				</div>
 				<div class="mb-4">
 					<label for="productJumsu" class="form-label">평점</label>
-					<input type="text" class="form-control" id="jumsu" name="productJumsu">
+					<input type="number" class="form-control" id="jumsu" name="productJumsu">
 				</div>
 				
-				<!-- 파일첨부 일단 나중에-->
-				<!-- <div class="mb-5">
+				<!-- 파일첨부-->
+				<div class="mb-5">
 					<input type="file" name="file">
-				</div> -->
+					<input type="file" name="file">
+					<input type="file" name="file">
+				</div>
+
 				
 				<button type="submit" class="btn btn-primary">Add</button>
 			</form>
 
 		</div>
+		
 	</section>
 <script>
 	$('#pContents').summernote()

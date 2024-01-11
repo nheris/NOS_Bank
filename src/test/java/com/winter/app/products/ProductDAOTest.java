@@ -20,7 +20,7 @@ public class ProductDAOTest extends MyTest{
 //		productDTO.setProductRate(2.9);
 //		productDTO.setProductJumsu(2.7);
 //		int result = productDAO.add(productDTO);
-		
+//		
 //		System.out.println(result);
 		
 		for(int i=0; i<100;i++) {
