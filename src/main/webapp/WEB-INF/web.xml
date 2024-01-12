@@ -12,7 +12,7 @@
 	<!-- Encoding 설정 -->
 	<filter>
 		<filter-name>encode</filter-name>
-		<filter-class>org.springframework.web.filter.CharacterEncordingFilter</filter-class>
+		<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
 		<init-param>
 			<param-name>encoding</param-name>
 			<param-value>UTF-8</param-value>
