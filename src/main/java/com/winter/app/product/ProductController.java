@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.winter.app.util.Pager;
+
 //annotations
 @Controller
 @RequestMapping("/products/*")
@@ -16,9 +18,10 @@ public class ProductController {
 	private ProductService productService;
 	
 	@RequestMapping (value = "list", method = RequestMethod.GET)
-	public ModelAndView getList(ModelAndView mv) throws Exception{
+	public ModelAndView getList(ModelAndView mv, Pager pager) throws Exception{
 		
-		List<ProductDTO> ar = productService.getList();
+		List<ProductDTO> ar = productService.getList(pager);
+		mv.addObject("pager", pager);
 		mv.addObject("list", ar);
 		mv.setViewName("products/list");
 		return mv;

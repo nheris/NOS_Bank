@@ -13,13 +13,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.winter.app.product.ProductDAO;
 import com.winter.app.product.ProductDTO;
 
-public class DAOTest extends MyTest{
+
+public class DBTest extends MyTest{
 	@Autowired
 	private DataSource dataSource;
-	
-	@Autowired
-	private ProductDAO productDAO;
-	
+
+
 	@Test
 	public void test() throws Exception {
 		Connection con= dataSource.getConnection();
@@ -27,11 +26,5 @@ public class DAOTest extends MyTest{
 		assertNotNull(con);
 	}
 	
-	
-	//@Test
-//	public void test2() throws Exception {
-//		List<ProductDTO> ar = productDAO.getList();
-//		
-//	}
 
 }

@@ -6,8 +6,14 @@
 <!-- namespace 비우면 에러 -->
 <mapper namespace="com.winter.app.product.ProductDAO">
 	<!-- list -->
-	<select id="getList" resultType="ProductDTO">
+	<select id="getList" resultType="ProductDTO" parameterType="Pager">
 		SELECT *
-		FROM PRODUCT
+		FROM( SELECT ROWNUM RN, R.* 
+			  FROM (SELECT * FROM PRODUCT
+					ORDER BY PRODUCTNUM DESC) R)
+		WHERE RN BETWEEN #{startNum} AND #{endNum}
+	</select>
+	<select id="getTotal" resultType="Long">
+		SELECT COUNT(PRODUCTNUM) FROM PRODUCT;
 	</select>
 </mapper>
