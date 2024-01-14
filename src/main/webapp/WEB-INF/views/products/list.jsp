@@ -23,6 +23,27 @@
                	 	<h1 class="display-5 fw-bolder mb-0"><span class="text-gradient d-inline">Product List</span></h1>
                 </div>
 				
+				<table border=1>
+					<tr>
+						<th>상품번호</th>
+						<th>상품명</th>
+						<th>상품설명</th>
+						<th>이자율</th>
+						<th>평점</th>
+						<th>누적판매량</th>
+						<th>판매유무</th>
+					</tr>
+					<tr>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+					</tr>
+				</table>
+				
 				<div>
 					<a href="./add" class="btn btn-danger">상품등록</a>
 					
