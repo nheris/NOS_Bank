@@ -11,7 +11,7 @@
 		FROM( SELECT ROWNUM RN, R.* 
 			  FROM (SELECT * FROM PRODUCT
 					ORDER BY PRODUCTNUM DESC) R)
-		WHERE RN BETWEEN #{startNum} AND #{endNum}
+		WHERE RN BETWEEN #{startNum} AND #{lastNum}
 	</select>
 	<select id="getTotal" resultType="Long">
 		SELECT COUNT(PRODUCTNUM) FROM PRODUCT;

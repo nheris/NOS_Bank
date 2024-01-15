@@ -51,7 +51,7 @@
 				</table>
 				
 				
-				<nav aria-label="Page navigation example">
+<%-- 				<nav aria-label="Page navigation example">
 				  <ul class="pagination">
 				  
 				    <li class="page-item">
@@ -72,7 +72,7 @@
 				    </li>
 				    
 				  </ul>
-				</nav>
+				</nav> --%>
 				
 				
 				<div>

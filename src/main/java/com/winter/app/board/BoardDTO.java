@@ -8,7 +8,7 @@ public class BoardDTO {
 	private String boardWriter;
 	private String boardContents;
 	private Date boardDate;
-	private Long boardHit;
+	private Long boardCheck;
 	
 	public Long getBoardNum() {
 		return boardNum;
@@ -40,10 +40,11 @@ public class BoardDTO {
 	public void setBoardDate(Date boardDate) {
 		this.boardDate = boardDate;
 	}
-	public Long getBoardHit() {
-		return boardHit;
+	public Long getBoardCheck() {
+		return boardCheck;
 	}
-	public void setBoardHit(Long boardHit) {
-		this.boardHit = boardHit;
+	public void setBoardCheck(Long boardCheck) {
+		this.boardCheck = boardCheck;
 	}
+
 }

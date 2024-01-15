@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<!-- namespace 비우면 에러 -->
+<mapper namespace="com.winter.app.board.qna.QnaDAO">
+
+	<select id="getList" resultType="QnaDTO" parameterType="Pager">
+		SELECT *
+			FROM (SELECT ROWNUM R, N.*
+				  FROM(SELECT * FROM QNA 
+				  	   
+				  	   ORDER BY BOARDNUM DESC)N)
+			WHERE R BETWEEN #{startRow} AND #{lastRow}
+	</select>
+	
+	
+	
+<!-- 	<select id="getDetail" >
+		SELECT *
+		FROM QNA Q
+			 LEFT JOIN
+			 QNAFILES QF
+			 USING (BOARDNUM)
+		WHERE BOARDNUM=#{boardNum}
+	</select> -->
+</mapper>

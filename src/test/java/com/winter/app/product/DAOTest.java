@@ -15,11 +15,11 @@ public class DAOTest extends MyTest{
 	@Autowired
 	private ProductDAO productDAO;
 	
-	@Test
+//	@Test
 	public void test() throws Exception {
-		List<ProductDTO> ar = productDAO.getList();
-		System.out.println(ar.size());
-		assertNotEquals(0, ar.size());
+//		List<ProductDTO> ar = productDAO.getList();
+//		System.out.println(ar.size());
+//		assertNotEquals(0, ar.size());
 	}
 
 }

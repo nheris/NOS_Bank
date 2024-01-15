@@ -1,61 +1,166 @@
 package com.winter.app.util;
 
 public class Pager {
-
+	
 	private Long startRow;
-	private Long endRow;
-	private Long perPage=10L;
+	private Long lastRow;
+	private Long perPage=10L; //몇개씩 조회?
 	private Long page;
 	
 	private Long totalPage;
 	private Long startNum;
-	private Long endNum;
+	private Long lastNum;
 	
-	private boolean start;
-	private boolean end;
+	//이전 블럭이 없으면 true;
+	private boolean start; //이전값있냐없냐 true,false
+	//다음 블럭이 없으면 true;
+	private boolean last; //다음값
 	
+	//검색 관련
 	private String search;
 	private String kind;
 	
+
+
+	//startRow, lastRow 계산하는 메서드
 	public void makeRow() {
-		this.endRow = this.getPage()*this.getPerPage();
-		this.startRow = (this.getPage()-1)*this.getPerPage()+1;
+		this.lastRow=this.getPage()*this.getPerPage();
+		//this.startRow=this.perPage*this.page-9;
+		//this.startRow=this.perPage*page-(perPage-1);
+		//this.startRow=lastRow-perPage+1;
+		this.startRow=(this.getPage()-1)*this.getPerPage()+1;
 	}
+
 	public void makeNum(Long totalCount) {
-		//1.
-		Long totalPage = totalCount/this.getPerPage();
+		/**
+		 * 페이지 계산 region말고 다른데에도 쓸거니 pager에
+		 */
+		//1. 총 갯수로 총 페이지 수 구하기
+		Long totalPage=0L;
+		totalPage = totalCount/this.getPerPage();
+		
 		if(totalCount%this.getPerPage()!=0) {
+			//totalPage=totalPage+1;
 			totalPage++;
 		}
+		
 		this.setTotalPage(totalPage);
-		//2.
-		Long perBlock=5L;
+		
+		//2. 총블럭의 수 구하기
+		Long perBlock=5L;//블럭당 번호의 개수
 		Long totalBlock=0L;
-		totalBlock=this.getTotalPage()/perBlock;
-		if(this.getTotalPage()%perBlock!=0) {
+		totalBlock= totalPage/perBlock;
+		if(totalPage%perBlock != 0){
 			totalBlock++;
 		}
-		//3.
-		Long curBlock = 0L;
-		curBlock = this.getPage()/perBlock;
-		if(this.getPage()%perBlock!=0) {
+		
+		//3. Page 값으로 현재 블럭 번호 구하기 6~10 2번블럭
+		Long curBlock=0L;//블럭 번호
+		curBlock=this.getPage()/perBlock;
+		if(this.getPage()%perBlock != 0) {
 			curBlock++;
 		}
-		//4.
-		Long endNum=curBlock*perBlock;
-		Long startNum=endNum-perBlock+1;
 		
-		this.setEndNum(endNum);
+		//4. 현재 블럭 번호로 시작번호와 끝번호 구하기
+		Long startNum=0L;
+		Long lastNum=curBlock*perBlock;
+		startNum= lastNum-perBlock+1;
+		
 		this.setStartNum(startNum);
-		//5.
-		if(curBlock==1) {
+		this.setLastNum(lastNum);
+		
+		//5. 이전,다음 블럭 유무
+		if(curBlock ==1) {
 			this.setStart(true);
 		}
+		
 		if(curBlock==totalBlock) {
-			this.setEndNum(totalPage);
-			this.setEnd(true);
+			this.setLastNum(totalPage);
+			this.setLast(true);
 		}
 	}
+	
+	public String getSearch() {
+		if(this.search == null) {
+			this.search="";
+		}
+		return search;
+	}
+	
+	public void setSearch(String search) {
+		this.search = search;
+	}
+	public String getKind() {
+		return kind;
+	}
+
+	public void setKind(String kind) {
+		this.kind = kind;
+	}
+	
+	
+	//boolean은 get말고 is, Boolaen으로 해도됨
+	public boolean isStart() {
+		return start;
+	}
+
+	public void setStart(boolean start) {
+		this.start = start;
+	}
+
+	public boolean isLast() {
+		return last;
+	}
+
+	public void setLast(boolean last) {
+		this.last = last;
+	}
+
+	public Long getStartNum() {
+		return startNum;
+	}
+
+	public void setStartNum(Long startNum) {
+		this.startNum = startNum;
+	}
+
+	public Long getLastNum() {
+		return lastNum;
+	}
+
+	public void setLastNum(Long lastNum) {
+		this.lastNum = lastNum;
+	}
+	
+	public Long getTotalPage() {
+		return totalPage;
+	}
+
+	public void setTotalPage(Long totalPage) {
+		this.totalPage = totalPage;
+	}
+
+	
+	
+	public Long getPerPage() {
+		return perPage;
+	}
+
+	public void setPerPage(Long perPage) {
+		this.perPage = perPage;
+	}
+
+	public Long getPage() {
+		if(this.page==null || this.page<1) {
+			this.page=1L;
+		}
+		return page;
+	}
+
+	public void setPage(Long page) {
+		this.page = page;
+	}
+
 	
 	public Long getStartRow() {
 		return startRow;
@@ -63,71 +168,11 @@ public class Pager {
 	public void setStartRow(Long startRow) {
 		this.startRow = startRow;
 	}
-	public Long getEndRow() {
-		return endRow;
+	public Long getLastRow() {
+		return lastRow;
 	}
-	public void setEndRow(Long endRow) {
-		this.endRow = endRow;
-	}
-	public Long getPerPage() {
-		if(this.page==null || this.page<1) {
-			this.page=1L;
-		}
-		return perPage;
-	}
-	public void setPerPage(Long perPage) {
-		this.perPage = perPage;
-	}
-	public Long getPage() {
-		return page;
-	}
-	public void setPage(Long page) {
-		this.page = page;
-	}
-	public Long getStartNum() {
-		return startNum;
-	}
-	public void setStartNum(Long startNum) {
-		this.startNum = startNum;
-	}
-	public Long getEndNum() {
-		return endNum;
-	}
-	public void setEndNum(Long endNum) {
-		this.endNum = endNum;
-	}
-	public Long getTotalPage() {
-		return totalPage;
-	}
-	public void setTotalPage(Long totalPage) {
-		this.totalPage = totalPage;
-	}
-	public boolean isStart() {
-		return start;
-	}
-	public void setStart(boolean start) {
-		this.start = start;
-	}
-	public boolean isEnd() {
-		return end;
-	}
-	public void setEnd(boolean end) {
-		this.end = end;
-	}
-	public String getSearch() {
-		if(this.search == null) {
-			this.search="";
-		}
-		return search;
-	}
-	public void setSearch(String search) {
-		this.search = search;
-	}
-	public String getKind() {
-		return kind;
-	}
-	public void setKind(String kind) {
-		this.kind = kind;
+	public void setLastRow(Long lastRow) {
+		this.lastRow = lastRow;
 	}
 	
 	
