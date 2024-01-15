@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 import com.winter.app.board.BoardDAO;
 import com.winter.app.board.BoardDTO;
 import com.winter.app.util.Pager;
-@Repository("qnaDAO")
+@Repository
 public class QnaDAO implements BoardDAO{
 	@Autowired
 	private SqlSession sqlSession;
@@ -30,13 +30,11 @@ public class QnaDAO implements BoardDAO{
 
 	@Override
 	public BoardDTO getDetail(BoardDTO boardDTO) throws Exception {
-		// TODO Auto-generated method stub
 		return sqlSession.selectOne(namespace+"getDetail", boardDTO);
 	}
 
 	@Override
 	public int setAdd(BoardDTO boardDTO) throws Exception {
-		// TODO Auto-generated method stub
 		return sqlSession.insert(namespace+"setAdd", boardDTO);
 	}
 

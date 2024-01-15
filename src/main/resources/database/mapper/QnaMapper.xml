@@ -5,7 +5,8 @@
   
 <!-- namespace 비우면 에러 -->
 <mapper namespace="com.winter.app.board.qna.QnaDAO">
-
+	
+	<!-- list -->
 	<select id="getList" resultType="QnaDTO" parameterType="Pager">
 		SELECT *
 			FROM (SELECT ROWNUM R, N.*
@@ -16,27 +17,41 @@
 	</select>
 	
 	
-	
-<!-- 	<select id="getDetail" >
+	<!-- detail -->
+	<select id="getDetail" parameterType="BoardDTO" resultMap="getDetailResult">
 		SELECT *
-		FROM QNA Q
+		FROM QNA 
 			 LEFT JOIN
-			 QNAFILES QF
+			 QNAFILES
 			 USING (BOARDNUM)
-		WHERE BOARDNUM=#{boardNum}
-	</select> -->
+		WHERE BOARDNUM = #{boardNum}
+	</select>
+	
+	<resultMap type="QnaDTO" id="getDetailResult">
+		<id column="BOARDNUM" property="boardNum"/>
+		<result column="BOARDTITLE" property="boardTitle"/>
+		<result column="BOARDWRITER" property="boardWriter"/>
+		<result column="BOARDCONTENTS" property="boardContents"/>
+		<result column="BOARDDATE" property="boardDate"/>
+		<result column="BOARDCHECK" property="boardCheck"/>
+		<result column="BOARDREF" property="boardRef"/>
+		<result column="BOARDSTEP" property="boardStep"/>
+		<result column="BOARDDEPTH" property="boardDepth"/>
+		<collection property="fileDTOs" javaType="List" ofType="BoardFileDTO">
+			<id column="FILENUM" property="fileNum"/>
+			<result column="FILENAME" property="fileName"/>
+			<result column="ORINAME" property="oriName"/>
+		</collection>
+	</resultMap>
+	
 	
 	<!-- add -->
-  	<insert id="setAdd" parameterType="BoardDTO">
+	<insert id="setAdd" parameterType="BoardDTO">
   		<selectKey keyProperty="boardNum" resultType="Long" order="BEFORE">
   			SELECT BOARD_SEQ.NEXTVAL FROM DUAL
   		</selectKey>
   		INSERT INTO QNA
-  		(BOARDNUM, BOARDTITLE, BOARDWRITER, BOARDCONTENTS, BOARDDATE, BOARDCHECK,
-  		 BOARDREF, BOARDSTEP, BOARDDEPTH
-  		)
   		VALUES
   		(#{boardNum}, #{boardTitle}, #{boardWriter},#{boardContents}, SYSDATE, 0,#{boardNum},0,0)
   	</insert>
-	
 </mapper>

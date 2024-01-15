@@ -10,6 +10,8 @@
   		<typeAlias type="com.winter.app.util.Pager" alias="Pager"/>
   		<typeAlias type="com.winter.app.board.notice.NoticeDTO" alias="NoticeDTO"/>
   		<typeAlias type="com.winter.app.board.qna.QnaDTO" alias="QnaDTO"/>
+  		<typeAlias type="com.winter.app.board.BoardDTO" alias="BoardDTO"/>
+  		<typeAlias type="com.winter.app.board.BoardFileDTO" alias="BoardFileDTO"/>
   	</typeAliases>
   
   </configuration>

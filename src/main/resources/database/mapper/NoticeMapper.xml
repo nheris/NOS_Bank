@@ -5,6 +5,7 @@
   
 <!-- namespace 비우면 에러 -->
 <mapper namespace="com.winter.app.board.notice.NoticeDAO">
+
 	<!-- list -->
 	<select id="getList" resultType="NoticeDTO" parameterType="Pager">
 		SELECT *
@@ -15,25 +16,35 @@
 		WHERE R BETWEEN #{startRow} AND #{lastRow}
 	</select>
 	
-	<!-- <resultMap type="NoticeDTO" id="getDetailResult">
-		<id />
-		<result/>
-	</resultMap> -->
 	
-	
-	<!-- <select id="getDetail" parameterType="NoticeDTO" resultType="BoardDTO">
+	<!-- detail -->
+	<select id="getDetail" parameterType="BoardDTO" resultMap="getDetailResult">
 		SELECT *
-		FROM NOTICE N
+		FROM NOTICE 
 			 LEFT JOIN
-			 NOTICEFILES NF
+			 NOTICEFILES
 			 USING (BOARDNUM)
-		WHERE BOARDNUM=#{boardNum}
-	</select> -->
+		WHERE BOARDNUM = #{boardNum}
+	</select>
 	
+	<resultMap type="NoticeDTO" id="getDetailResult">
+		<id column="BOARDNUM" property="boardNum"/>
+		<result column="BOARDTITLE" property="boardTitle"/>
+		<result column="BOARDWRITER" property="boardWriter"/>
+		<result column="BOARDCONTENTS" property="boardContents"/>
+		<result column="BOARDDATE" property="boardDate"/>
+		<result column="BOARDCHECK" property="boardCheck"/>
+		<collection property="fileDTOs" javaType="List" ofType="BoardFileDTO">
+			<id column="FILENUM" property="fileNum"/>
+			<result column="FILENAME" property="fileName"/>
+			<result column="ORINAME" property="oriName"/>
+		</collection>
+	</resultMap>
+
 	
 	<!-- add -->
 	<insert id="setAdd" parameterType="BoardDTO">
-		INSERT INTO NOTICE (BOARDNUM,BOARDTITLE,BOARDWRITER,BOARDCONTENTS,BOARDDATE,BOARDCHECK)
-		VALUES (BOARD_SEA.NEXTVAL, #{boardTitle}, #{boardWriter),#{boardContents},SYSDATE,0}	
+		INSERT INTO NOTICE
+	  	VALUES(BOARD_SEQ.NEXTVAL, #{boardTitle}, #{boardWriter},#{boardContents}, SYSDATE, 0)	
 	</insert>
 </mapper>

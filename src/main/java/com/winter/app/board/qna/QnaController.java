@@ -31,7 +31,7 @@ public class QnaController {
 	//detail
 	@GetMapping("detail")
 	public String getDetail(BoardDTO boardDTO, Model model)throws Exception{
-		boardDTO = qnaService.getDetail(boardDTO);
+		boardDTO = boardService.getDetail(boardDTO);
 		model.addAttribute("boardDTO", boardDTO);
 		return "board/detail";
 	}

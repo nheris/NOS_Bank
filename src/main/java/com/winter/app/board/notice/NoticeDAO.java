@@ -35,7 +35,6 @@ public class NoticeDAO implements BoardDAO{
 
 	@Override
 	public int setAdd(BoardDTO boardDTO) throws Exception {
-		// TODO Auto-generated method stub
 		return sqlSession.insert(namespace+"setAdd", boardDTO);
 	}
 
