@@ -39,8 +39,10 @@ public class NoticeController {
 	
 	//detail
 	@GetMapping("detail")
-	public void detail()throws Exception{
-		
+	public String getDetail(BoardDTO boardDTO, Model model)throws Exception{
+		boardDTO = boardService.getDetail(boardDTO);
+		model.addAttribute("boardDTO", boardDTO);
+		return "board/detail";
 	}
 	
 	//add

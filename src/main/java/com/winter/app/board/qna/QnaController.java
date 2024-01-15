@@ -28,8 +28,13 @@ public class QnaController {
 		
 		return "board/list";
 	}
-	//
-	
+	//detail
+	@GetMapping("detail")
+	public String getDetail(BoardDTO boardDTO, Model model)throws Exception{
+		boardDTO = qnaService.getDetail(boardDTO);
+		model.addAttribute("boardDTO", boardDTO);
+		return "board/detail";
+	}
 
 	//add
 	@GetMapping("add")
