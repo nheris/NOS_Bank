@@ -29,4 +29,11 @@
 			 USING (BOARDNUM)
 		WHERE BOARDNUM=#{boardNum}
 	</select> -->
+	
+	
+	<!-- add -->
+	<insert id="setAdd" parameterType="BoardDTO">
+		INSERT INTO NOTICE (BOARDNUM,BOARDTITLE,BOARDWRITER,BOARDCONTENTS,BOARDDATE,BOARDCHECK)
+		VALUES (BOARD_SEA.NEXTVAL, #{boardTitle}, #{boardWriter),#{boardContents},SYSDATE,0}	
+	</insert>
 </mapper>

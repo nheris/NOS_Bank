@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -36,4 +37,21 @@ public class NoticeController {
 		return "board/list";
 	}
 	
+	//detail
+	@GetMapping("detail")
+	public void detail()throws Exception{
+		
+	}
+	
+	//add
+	@GetMapping("add")
+	public String setAdd() throws Exception{
+		return "board/add";
+	}
+	@PostMapping("add")
+	public String setAdd(BoardDTO boardDTO) throws Exception{
+		int result = boardService.setAdd(boardDTO);
+		return "redirect:./list";
+	}
 }
+

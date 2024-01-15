@@ -25,4 +25,18 @@
 			 USING (BOARDNUM)
 		WHERE BOARDNUM=#{boardNum}
 	</select> -->
+	
+	<!-- add -->
+  	<insert id="setAdd" parameterType="BoardDTO">
+  		<selectKey keyProperty="boardNum" resultType="Long" order="BEFORE">
+  			SELECT BOARD_SEQ.NEXTVAL FROM DUAL
+  		</selectKey>
+  		INSERT INTO QNA
+  		(BOARDNUM, BOARDTITLE, BOARDWRITER, BOARDCONTENTS, BOARDDATE, BOARDCHECK,
+  		 BOARDREF, BOARDSTEP, BOARDDEPTH
+  		)
+  		VALUES
+  		(#{boardNum}, #{boardTitle}, #{boardWriter},#{boardContents}, SYSDATE, 0,#{boardNum},0,0)
+  	</insert>
+	
 </mapper>
