@@ -40,6 +40,10 @@
                                 </div>
                             </div>
 
+                            <div>
+                                <a class="btn btn-primary" href="./reply?boardNum=${boardDTO.boardNum}">답글</a>
+                            </div>
+
                         </div>
                     </div>
                 </div>

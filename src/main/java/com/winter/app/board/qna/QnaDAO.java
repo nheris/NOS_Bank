@@ -50,4 +50,10 @@ public class QnaDAO implements BoardDAO{
 		return 0;
 	}
 	
+	public int setReplyUpdate(QnaDTO qnaDTO) throws Exception {
+		return sqlSession.update(namespace+"setReplyUpdate", qnaDTO);
+	}
+	public int setReplyAdd(QnaDTO qnaDTO) throws Exception {
+		return sqlSession.insert(namespace+"setReplyAdd", qnaDTO);
+	}
 }

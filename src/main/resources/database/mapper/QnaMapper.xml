@@ -12,7 +12,7 @@
 			FROM (SELECT ROWNUM R, N.*
 				  FROM(SELECT * FROM QNA 
 				  	   
-				  	   ORDER BY BOARDNUM DESC)N)
+				  	   ORDER BY BOARDREF DESC, BOARDSTEP ASC)N)
 			WHERE R BETWEEN #{startRow} AND #{lastRow}
 	</select>
 	
@@ -47,6 +47,7 @@
 	
 	<!-- add -->
 	<insert id="setAdd" parameterType="BoardDTO">
+		<!-- ref에도 넣어야해서 -->
   		<selectKey keyProperty="boardNum" resultType="Long" order="BEFORE">
   			SELECT BOARD_SEQ.NEXTVAL FROM DUAL
   		</selectKey>
@@ -54,4 +55,23 @@
   		VALUES
   		(#{boardNum}, #{boardTitle}, #{boardWriter},#{boardContents}, SYSDATE, 0,#{boardNum},0,0)
   	</insert>
+  	
+  	
+  	<!-- reply step update -->
+  	<update id="setReplyUpdate" parameterType="QnaDTO">
+  		UPDATE QNA SET BOARDSTEP=BOARDSTEP+1
+  		WHERE BOARDREF= #{boardRef} AND BOARDSTEP > #{boardStep}
+  	</update>
+  	
+  	<!-- reply add -->
+  	<insert id="setReplyAdd" parameterType="QnaDTO">
+  		<selectKey keyProperty="boardNum" resultType="Long" order="BEFORE">
+  			SELECT BOARD_SEQ.NEXTVAL FROM DUAL
+  		</selectKey>
+  		INSERT INTO QNA
+  		VALUES
+  		(#{boardNum}, #{boardTitle}, #{boardWriter},#{boardContents}, SYSDATE, 0,#{boardRef},#{boardStep},#{boardDepth})
+  	</insert>
+  	
+  	
 </mapper>

@@ -14,7 +14,7 @@ import com.winter.app.util.Pager;
 public class QnaService implements BoardService{
 	@Autowired
 	@Qualifier("qnaDAO")
-	private BoardDAO boardDAO;
+	private QnaDAO boardDAO;
 	
 	@Override
 	public List<BoardDTO> getList(Pager pager) throws Exception {
@@ -45,4 +45,27 @@ public class QnaService implements BoardService{
 		return 0;
 	}
 	
+	//reply
+	public int setReply(QnaDTO qnaDTO) throws Exception{
+		//boardNum : 부모의 글번호
+		//boardTitle : 답글 제목
+		//boardWeiter : 답글 작성자
+		//boardContents : 답글내용
+		//1. 부모의 정보를 조회(REF, STEP, DEPTH)
+		QnaDTO parent =  (QnaDTO)boardDAO.getDetail(qnaDTO);
+		
+		//2. 답글 정보 저장(REF, STEP, DEPTH)
+		qnaDTO.setBoardRef(parent.getBoardRef());
+		qnaDTO.setBoardStep(parent.getBoardStep()+1);
+		qnaDTO.setBoardDepth(parent.getBoardDepth()+1);
+		
+		//3. 부모의 정보로 step을 업데이트
+		int result = boardDAO.setReplyUpdate(parent);
+	
+		
+		//4. db에 답글을 저장
+		result = boardDAO.setReplyAdd(qnaDTO);
+		return result;
+		
+	}
 }

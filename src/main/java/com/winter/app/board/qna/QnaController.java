@@ -19,7 +19,7 @@ import com.winter.app.util.Pager;
 public class QnaController {
 	@Autowired
 	@Qualifier("qnaService")
-	private BoardService boardService;
+	private QnaService boardService;
 	
 	@GetMapping("list")
 	public String getList(Pager pager,Model model) throws Exception{
@@ -44,6 +44,18 @@ public class QnaController {
 	@PostMapping("add")
 	public String setAdd(BoardDTO boardDTO) throws Exception{
 		int result = boardService.setAdd(boardDTO);
+		return "redirect:./list";
+	}
+	
+	//reply Num만 필요하니 매개 BoardDTO NoticeDTO 둘다 상관없음
+	@GetMapping("reply")
+	public String setReply(BoardDTO boardDTO, Model model) throws Exception{
+		model.addAttribute("boardDTO", boardDTO);
+		return "board/reply";
+	}
+	@PostMapping("reply")
+	public String setReply(QnaDTO qnaDTO) throws Exception{
+		int result = boardService.setReply(qnaDTO);
 		return "redirect:./list";
 	}
 }
