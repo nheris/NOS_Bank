@@ -41,8 +41,9 @@
 	                         </div>
 	                         
 	                         <div class="mb-3">
-	                         
-	                         
+	                         	<input class="form-control" type="file" name="attachs">
+	                         	<input class="form-control" type="file" name="attachs">
+	                         	<input class="form-control" type="file" name="attachs">
 	                         </div>
 	                         
 	                         
