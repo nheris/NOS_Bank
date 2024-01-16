@@ -37,12 +37,10 @@
                                             </div>
                                             
                                             <div>
-                                            	<%-- <c:forEach item="${boardDTO.fileDTOs}" var="f"></c:forEach> --%>
-                                            		<a href="../resources/upload/${board}/${f.fileName}"></a>
-                                                
-                                            	
-                                            	
-                                            
+                                            	<c:forEach items="${boardDTO.fileDTOs}" var="f">
+                                            		<a href="../resources/upload/${board}/${f.fileName}">${f.oriName}</a>
+                                            	</c:forEach>
+                           
                                             </div>
                                             
                                             
@@ -52,20 +50,19 @@
                             </div>
                             <!-- notice엔 답글버튼 없게 -->
 							<%-- <c:if test="${board ne 'Notice'}"> --%>
-							<c:if test="${bbs eq 1}">
                             <div>
                                 <c:if test="${bbs eq '1'}">
                                     <a class="btn btn-primary" href="./reply?boardNum=${boardDTO.boardNum}">답글</a>
 
                                 </c:if>
-                                <a id="update" class="btn btn-success" href="">Update</a>
-                                <a id="delete" class="btn btn-danger" href="">Delete</a>
+                                <a id="update" class="btn btn-success" href="#">Update</a>
+                                <a id="delete" class="btn btn-danger" href="#">Delete</a>
 
                                 <form id="frm" action="./update" method="get">
                                     <input type="hidden" name="boardNum" value="${boardDTO.boardNum}">
                                 </form>
                             </div>
-							</c:if>
+							
 
                         </div>
                     </div>

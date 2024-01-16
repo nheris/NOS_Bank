@@ -58,7 +58,7 @@ public class NoticeController {
 		return "redirect:./list";
 	}
 	
-	//
+	//Controller의 모든 메서드에 공통 Data들을 model에 담으려 할 때 사용
 	@ModelAttribute("board")
 	public String getBoard() {
 		return "notice";

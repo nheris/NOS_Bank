@@ -25,18 +25,21 @@ public class QnaService implements BoardService{
 	@Autowired
 	private ServletContext servletContext;
 	
+	//list
 	@Override
 	public List<BoardDTO> getList(Pager pager) throws Exception {
 		pager.makeRow();
 		
 		return boardDAO.getList(pager);
 	}
-
+	
+	//detail
 	@Override
 	public BoardDTO getDetail(BoardDTO boardDTO) throws Exception {
 		return boardDAO.getDetail(boardDTO);
 	}
-
+	
+	//add
 	@Override
 	public int setAdd(BoardDTO boardDTO, MultipartFile[] attachs) throws Exception {
 		int result = boardDAO.setAdd(boardDTO);
@@ -51,36 +54,15 @@ public class QnaService implements BoardService{
 			boardFileDTO.setFileName(fileName);
 			boardFileDTO.setOriName(f.getOriginalFilename());
 			boardFileDTO.setBoardNum(boardDTO.getBoardNum());
-//			result = boardDAO.setFileAdd(boardFileDTO);
+			result = boardDAO.setFileAdd(boardFileDTO);
 		}
 		
 		
-		return 0;
-	}
-
-	@Override
-	public int setUpdate(BoardDTO boardDTO) throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public int setDelete(BoardDTO boardDTO) throws Exception {
-		// 1. file 을 삭제
-		List<BoardFileDTO> files = qnaDAO.getFileList();
-		String path = servletContext.getRealPath("/resources/upload/qna")
-		for(BoardFileDTO b: files) {
-			fileManager.fileDelete(path, null)
-			
-		}
-		//2, file table의 정보 사게
-		//3. qna 정보를 수정
-		
-		return 0;
+		return result;
 	}
 	
 	//reply
-	public int setReply(QnaDTO qnaDTO) throws Exception{
+	public int setReply(QnaDTO qnaDTO, MultipartFile [] attachs) throws Exception{
 		//boardNum : 부모의 글번호
 		//boardTitle : 답글 제목
 		//boardWeiter : 답글 작성자
@@ -95,11 +77,55 @@ public class QnaService implements BoardService{
 		
 		//3. 부모의 정보로 step을 업데이트
 		int result = boardDAO.setReplyUpdate(parent);
-	
+		
 		
 		//4. db에 답글을 저장
 		result = boardDAO.setReplyAdd(qnaDTO);
+		
+		String path = servletContext.getRealPath("/resources/upload/qna");
+		
+		for(MultipartFile f : attachs) {
+			
+			if(f.isEmpty()) {
+				continue;
+			}
+			
+			String fileName = fileManager.fileSave(path, f);
+			
+			BoardFileDTO boardFileDTO = new BoardFileDTO();
+			boardFileDTO.setFileName(fileName);
+			boardFileDTO.setOriName(f.getOriginalFilename());
+			boardFileDTO.setBoardNum(qnaDTO.getBoardNum());
+			result=boardDAO.setFileAdd(boardFileDTO);
+		}
 		return result;
 		
 	}
+	
+	//update
+	@Override
+	public int setUpdate(BoardDTO boardDTO) throws Exception {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+	
+	//delete
+	@Override
+	public int setDelete(BoardDTO boardDTO) throws Exception {
+		//1. file을 삭제
+		List<BoardFileDTO> files = boardDAO.getFileList(boardDTO);
+		String path = servletContext.getRealPath("/resources/upload/qna");
+		for(BoardFileDTO b: files) {
+			fileManager.fileDelete(path, b.getFileName());
+		}
+		//2. file table의 정보 삭제
+		int result = boardDAO.setFileDelete(boardDTO);
+		
+		//3. qna 정보를 수정
+		result=boardDAO.setDelete(boardDTO);
+		
+		return result;
+	}
+	
+
 }

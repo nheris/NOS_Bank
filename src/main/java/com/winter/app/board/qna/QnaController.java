@@ -23,6 +23,19 @@ public class QnaController {
 	@Qualifier("qnaService")
 	private QnaService boardService;
 	
+	//모든메서드에 적용
+	@ModelAttribute("board")
+	public String getBoard() {
+		return "qna";
+	}
+	
+	//답글 있 1 없 0 
+	@ModelAttribute("bbs")
+	public Integer getKind() {
+		return 1;
+	}
+		
+	//list
 	@GetMapping("list")
 	public String getList(Pager pager,Model model) throws Exception{
 		List<BoardDTO> ar = boardService.getList(pager);
@@ -49,29 +62,27 @@ public class QnaController {
 		return "redirect:./list";
 	}
 	
-	//reply Num만 필요하니 매개 BoardDTO NoticeDTO 둘다 상관없음
+	//reply 
 	@GetMapping("reply")
+						//Num만 필요하니 매개 BoardDTO NoticeDTO 둘다 상관없음
 	public String setReply(BoardDTO boardDTO, Model model) throws Exception{
 		model.addAttribute("boardDTO", boardDTO);
 		return "board/reply";
 	}
 	@PostMapping("reply")
-	public String setReply(QnaDTO qnaDTO) throws Exception{
-		int result = boardService.setReply(qnaDTO);
+	public String setReply(QnaDTO qnaDTO, MultipartFile[] attachs) throws Exception{
+		int result = boardService.setReply(qnaDTO, attachs);
 		return "redirect:./list";
 	}
 	
-	//모든메서드에 적용?
-	@ModelAttribute("board")
-	public String getBoard() {
-		return "qna";
+	//delete
+	@PostMapping("delete")
+	public String setDelete(QnaDTO boardDTO)throws Exception{
+		boardDTO.setFlag(1);
+		int result = boardService.setDelete(boardDTO);
+		return "redirect:./list";
 	}
 	
-	//답글 있 1 없 0 
-	@ModelAttribute("bbs")
-	public Integer getKind() {
-		return 1;
-	}
 	
-	//delet
+	
 }

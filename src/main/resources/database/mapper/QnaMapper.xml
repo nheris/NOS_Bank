@@ -44,7 +44,7 @@
 		</collection>
 	</resultMap>
 	
-	
+	<!-- ADD -->
 	<!-- add -->
 	<insert id="setAdd" parameterType="BoardDTO">
 		<!-- ref에도 넣어야해서 -->
@@ -53,16 +53,21 @@
   		</selectKey>
   		INSERT INTO QNA
   		VALUES
-  		(#{boardNum}, #{boardTitle}, #{boardWriter},#{boardContents}, SYSDATE, 0,#{boardNum},0,0)
+  		(#{boardNum}, #{boardTitle}, #{boardWriter},#{boardContents}, SYSDATE, 0,#{boardNum},0,0,0)
+  	</insert>
+	<!-- file add -->
+  	<insert id="setFileAdd" parameterType="BoardFileDTO">
+  		INSERT INTO QNAFILES
+  		VALUES (BOARD_SEQ.NEXTVAL, #{boardNum}, #{fileName}, #{oriName})
   	</insert>
   	
   	
+  	<!-- REPLY -->
   	<!-- reply step update -->
   	<update id="setReplyUpdate" parameterType="QnaDTO">
   		UPDATE QNA SET BOARDSTEP=BOARDSTEP+1
   		WHERE BOARDREF= #{boardRef} AND BOARDSTEP > #{boardStep}
   	</update>
-  	
   	<!-- reply add -->
   	<insert id="setReplyAdd" parameterType="QnaDTO">
   		<selectKey keyProperty="boardNum" resultType="Long" order="BEFORE">
@@ -70,18 +75,26 @@
   		</selectKey>
   		INSERT INTO QNA
   		VALUES
-  		(#{boardNum}, #{boardTitle}, #{boardWriter},#{boardContents}, SYSDATE, 0,#{boardRef},#{boardStep},#{boardDepth})
+  		(#{boardNum}, #{boardTitle}, #{boardWriter},#{boardContents}, SYSDATE, 0,#{boardRef},#{boardStep},#{boardDepth}, 0)
   	</insert>
   	
-  	<!-- UPDATE -->
-  	<update id="setDelete" parameterType="QnaDTO">
-  		UPDATE QNA SET FLAG=#{flag}
-  	</update>
   	
+  	
+  	<!-- DELETE -->
   	<!-- file list -->
   	<select id="getFileList" parameterType="BoardDTO" resultType="BoardFileDTO">
-  		SELECT FILENAME
-  		FROM QNAFILES
-  		WHERE BOARDNUM = #{boarNum}
+  		SELECT FILENAME FROM QNAFILES
+  		WHERE BOARDNUM=#{boardNum}
   	</select>
+  	<!-- file Delete -->
+  	<delete id="setFileDelete" parameterType="BoardDTO">
+  		DELETE QNAFILES WHERE BOARDNUM=#{boardNum}
+  	</delete>
+  	<!-- delete (수정) -->
+  	<update id="setDelete" parameterType="QnaDTO">
+  		UPDATE QNA SET FLAG=#{flag}
+  		WHERE BOARDNUM=#{boardNum}
+  	</update>
+  	
+  	
 </mapper>

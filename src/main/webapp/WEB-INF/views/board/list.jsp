@@ -39,20 +39,36 @@
                             </thead>
                             <tbody>
                             	<c:forEach items="${list}" var="dto">
-                                <tr>
-                                    <td>${dto.boardNum}</td>
-                                    <td>
-                                        <a href="./detail?boardNum=${dto.boardNum}">
-                                        <c:catch> <!-- 예외발생시 -->
-                                            <c:forEach begin="1" end="${dto.boardDepth}">⨽</c:forEach>
+                            		<c:set var="f" value="0"></c:set>
+                            			<c:catch>
+                                        	<c:set var="f" value="${dto.flag}"></c:set>
+                                            <c:if test="${f eq 1}">
+                                                <tr>
+                                                    <td></td>
+                                                    <td>삭제된 글입니다.</td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                </tr>
+                                            
+                                            </c:if>
                                         </c:catch>
-                                            ${dto.boardTitle}
-                                        </a>
-                                    </td>
-                                    <td>${dto.boardWriter}</td>
-                                    <td>${dto.boardDate}</td>
-                                    <td>${dto.boardCheck}</td>
-                                </tr>
+                            				<c:if test="${f eq 0}">
+				                                <tr>
+				                                    <td>${dto.boardNum}</td>
+				                                    <td>
+				                                        <a href="./detail?boardNum=${dto.boardNum}">
+				                                        <c:catch> <!-- 예외가 발생할 코드 -->
+				                                            <c:forEach begin="1" end="${dto.boardDepth}">⨽</c:forEach>
+				                                        </c:catch>
+				                                            ${dto.boardTitle}
+				                                        </a>
+				                                    </td>
+				                                    <td>${dto.boardWriter}</td>
+				                                    <td>${dto.boardDate}</td>
+				                                    <td>${dto.boardCheck}</td>
+				                                </tr>
+                                			</c:if>
                             	</c:forEach>
                             </tbody>
                         </table>

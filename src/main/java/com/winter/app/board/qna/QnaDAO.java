@@ -23,42 +23,54 @@ public class QnaDAO implements BoardDAO{
 		// TODO Auto-generated method stub
 		return null;
 	}
-
+	//list
 	@Override
 	public List<BoardDTO> getList(Pager pager) throws Exception {
 		return sqlSession.selectList(namespace+"getList" ,pager);
 	}
-
+	
+	//detail
 	@Override
 	public BoardDTO getDetail(BoardDTO boardDTO) throws Exception {
 		return sqlSession.selectOne(namespace+"getDetail", boardDTO);
 	}
-
+	
+	//add
 	@Override
 	public int setAdd(BoardDTO boardDTO) throws Exception {
 		return sqlSession.insert(namespace+"setAdd", boardDTO);
 	}
-
+	
+	public int setFileAdd(BoardFileDTO boardFileDTO)throws Exception{
+		return sqlSession.insert(namespace+"setFileAdd", boardFileDTO);
+	}
+	
+	//reply
+	public int setReplyUpdate(QnaDTO qnaDTO)throws Exception{
+		return sqlSession.update(namespace+"setReplyUpdate", qnaDTO);
+	}
+	
+	public int setReplyAdd(QnaDTO qnaDTO)throws Exception{
+		return sqlSession.insert(namespace+"setReplyAdd", qnaDTO);
+	}
+	
+	//update
 	@Override
 	public int setUpdate(BoardDTO boardDTO) throws Exception {
 		// TODO Auto-generated method stub
 		return 0;
 	}
-
+	
+	//delete
+	public List<BoardFileDTO> getFileList(BoardDTO boardDTO)throws Exception{
+		return sqlSession.selectList(namespace+"getFileList", boardDTO);
+	}
+	public int setFileDelete(BoardDTO boardDTO)throws Exception{
+		return sqlSession.delete(namespace+"setFileDelete", boardDTO);
+	}
 	@Override
 	public int setDelete(BoardDTO boardDTO) throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
+		return sqlSession.update(namespace+"setDelete", boardDTO);
 	}
-	
-	public int setReplyUpdate(QnaDTO qnaDTO) throws Exception {
-		return sqlSession.update(namespace+"setReplyUpdate", qnaDTO);
-	}
-	public int setReplyAdd(QnaDTO qnaDTO) throws Exception {
-		return sqlSession.insert(namespace+"setReplyAdd", qnaDTO);
-	}
-	
-	public List<BoardFileDTO> getFileList(BoardDTO boardDTO) throws Exception() {
-		return sqlSession.sel
-	
-	}
+
+}

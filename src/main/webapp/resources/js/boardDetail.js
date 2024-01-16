@@ -7,10 +7,9 @@ update.addEventListener("click",(e)=>{
     frm.submit();
 })
 
-del.addEventListener("click",function(e){
+del.addEventListener("click", (e)=>{
     e.preventDefault();
-    // frm.action
-    frm.attributes("action", "./delete");
-    frm.attributes("method", "post");
+    frm.setAttribute("action", "./delete");
+    frm.setAttribute("method", "post");
     frm.submit();
-})
+});
