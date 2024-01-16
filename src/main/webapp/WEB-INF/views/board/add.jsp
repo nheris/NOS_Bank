@@ -8,7 +8,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>Board Add</title>
+        <title>${board} Add</title>
 	<!-- 사용전 경로를 꼭 수정하세요/ -->
 	<c:import url="../temps/head_css.jsp"></c:import>
 	
@@ -21,7 +21,7 @@
             
    			<section class="py-5">
 				<div class="text-center mb-5">
-					<h1 class="display-5 fw-bolder mb-0"><span class="text-gradient d-inline">BoardAdd</span></h1>
+					<h1 class="display-5 fw-bolder mb-0"><span class="text-gradient d-inline">${board}Add</span></h1>
 				</div>
 				
 				<div class="row gx-5 justify-content-center">
@@ -36,9 +36,16 @@
 	                          	 <input type="text" class="form-control" id="writer" name="boardWriter">
 	                         </div>
 	                         <div class="mb-3">
-	                         	  <label for="contents" class="form-label">Example textarea</label>
+	                         	  <label for="contents" class="form-label">Contents</label>
 	                          	 <textarea class="form-control" id="contents" rows="3" name="boardContents"></textarea>
 	                         </div>
+	                         
+	                         <div class="mb-3">
+	                         
+	                         
+	                         </div>
+	                         
+	                         
 	                         <div class="mb-3">
 	                           	<button class="btn btn-primary">등록</button>
 	                         </div>

@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -25,7 +26,7 @@ public class QnaController {
 	public String getList(Pager pager,Model model) throws Exception{
 		List<BoardDTO> ar = boardService.getList(pager);
 		model.addAttribute("list",ar);
-		
+		model.addAttribute("board","QnA");
 		return "board/list";
 	}
 	//detail
@@ -57,5 +58,17 @@ public class QnaController {
 	public String setReply(QnaDTO qnaDTO) throws Exception{
 		int result = boardService.setReply(qnaDTO);
 		return "redirect:./list";
+	}
+	
+	//모든메서드에 적용?
+	@ModelAttribute("board")
+	public String getBoard() {
+		return "QnA";
+	}
+	
+	//답글 있 1 없 0 
+	@ModelAttribute("bbs")
+	public Integer getKind() {
+		return 1;
 	}
 }
