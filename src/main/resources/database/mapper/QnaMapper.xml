@@ -73,5 +73,11 @@
   		(#{boardNum}, #{boardTitle}, #{boardWriter},#{boardContents}, SYSDATE, 0,#{boardRef},#{boardStep},#{boardDepth})
   	</insert>
   	
+  	<!-- file list -->
+  	<select id="getFileList" parameterType="BoardDTO" resultType="BoardFileDTO">
+  		SELECT FILENAME
+  		FROM QNAFILES
+  		WHERE BOARDNUM = #{boarNum}
+  	</select>
   	
 </mapper>

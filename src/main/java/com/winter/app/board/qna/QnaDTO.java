@@ -10,6 +10,7 @@ public class QnaDTO extends BoardDTO{
 	private Long boardStep;
 	private Long boardDepth;
 	private List<BoardFileDTO> fileDTOs;
+	private Integer flag;
 	
 	public Long getBoardRef() {
 		return boardRef;
@@ -34,6 +35,12 @@ public class QnaDTO extends BoardDTO{
 	}
 	public void setFileDTOs(List<BoardFileDTO> fileDTOs) {
 		this.fileDTOs = fileDTOs;
+	}
+	public Integer getFlag() {
+		return flag;
+	}
+	public void setFlag(Integer flag) {
+		this.flag = flag;
 	}
 	
 	

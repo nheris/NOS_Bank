@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.winter.app.board.BoardDAO;
 import com.winter.app.board.BoardDTO;
+import com.winter.app.board.BoardFileDTO;
 import com.winter.app.util.Pager;
 @Repository
 public class QnaDAO implements BoardDAO{
@@ -56,4 +57,8 @@ public class QnaDAO implements BoardDAO{
 	public int setReplyAdd(QnaDTO qnaDTO) throws Exception {
 		return sqlSession.insert(namespace+"setReplyAdd", qnaDTO);
 	}
-}
+	
+	public List<BoardFileDTO> getFileList(BoardDTO boardDTO) throws Exception() {
+		return sqlSession.sel
+	
+	}
