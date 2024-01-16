@@ -73,11 +73,15 @@
   		(#{boardNum}, #{boardTitle}, #{boardWriter},#{boardContents}, SYSDATE, 0,#{boardRef},#{boardStep},#{boardDepth})
   	</insert>
   	
+  	<!-- UPDATE -->
+  	<update id="setDelete" parameterType="QnaDTO">
+  		UPDATE QNA SET FLAG=#{flag}
+  	</update>
+  	
   	<!-- file list -->
   	<select id="getFileList" parameterType="BoardDTO" resultType="BoardFileDTO">
   		SELECT FILENAME
   		FROM QNAFILES
   		WHERE BOARDNUM = #{boarNum}
   	</select>
-  	
 </mapper>

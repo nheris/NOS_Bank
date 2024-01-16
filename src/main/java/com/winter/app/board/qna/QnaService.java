@@ -66,7 +66,16 @@ public class QnaService implements BoardService{
 
 	@Override
 	public int setDelete(BoardDTO boardDTO) throws Exception {
-		// TODO Auto-generated method stub
+		// 1. file 을 삭제
+		List<BoardFileDTO> files = qnaDAO.getFileList();
+		String path = servletContext.getRealPath("/resources/upload/qna")
+		for(BoardFileDTO b: files) {
+			fileManager.fileDelete(path, null)
+			
+		}
+		//2, file table의 정보 사게
+		//3. qna 정보를 수정
+		
 		return 0;
 	}
 	
