@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.winter.app.board.BoardDTO;
 import com.winter.app.board.BoardService;
@@ -43,8 +44,8 @@ public class QnaController {
 		return "board/add";
 	}
 	@PostMapping("add")
-	public String setAdd(BoardDTO boardDTO) throws Exception{
-		int result = boardService.setAdd(boardDTO);
+	public String setAdd(BoardDTO boardDTO, MultipartFile[] attachs) throws Exception{
+		int result = boardService.setAdd(boardDTO, attachs);
 		return "redirect:./list";
 	}
 	
@@ -63,7 +64,7 @@ public class QnaController {
 	//모든메서드에 적용?
 	@ModelAttribute("board")
 	public String getBoard() {
-		return "QnA";
+		return "qna";
 	}
 	
 	//답글 있 1 없 0 
@@ -71,4 +72,6 @@ public class QnaController {
 	public Integer getKind() {
 		return 1;
 	}
+	
+	//delet
 }

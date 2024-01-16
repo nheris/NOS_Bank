@@ -35,6 +35,17 @@
                                             <div>
                                             	${boardDTO.boardContents}
                                             </div>
+                                            
+                                            <div>
+                                            	<%-- <c:forEach item="${boardDTO.fileDTOs}" var="f"></c:forEach> --%>
+                                            		<a href="../resources/upload/${board}/${f.fileName}"></a>
+                                                
+                                            	
+                                            	
+                                            
+                                            </div>
+                                            
+                                            
                                         </div>
                                     </div>
                                 </div>
@@ -43,7 +54,16 @@
 							<%-- <c:if test="${board ne 'Notice'}"> --%>
 							<c:if test="${bbs eq 1}">
                             <div>
-                                <a class="btn btn-primary" href="./reply?boardNum=${boardDTO.boardNum}">답글</a>
+                                <c:if test="${bbs eq '1'}">
+                                    <a class="btn btn-primary" href="./reply?boardNum=${boardDTO.boardNum}">답글</a>
+
+                                </c:if>
+                                <a id="update" class="btn btn-success" href="">Update</a>
+                                <a id="delete" class="btn btn-danger" href="">Delete</a>
+
+                                <form id="frm" action="./update" method="get">
+                                    <input type="hidden" name="boardNum" value="${boardDTO.boardNum}">
+                                </form>
                             </div>
 							</c:if>
 
@@ -58,5 +78,6 @@
         <!-- Footer-->
         <!-- 사용전 경로를 꼭 수정하세요/ -->
 		<c:import url="../temps/footer.jsp"></c:import>
+        <script src="/resources/js/boardDetail.js"></script>
     </body>
 </html>

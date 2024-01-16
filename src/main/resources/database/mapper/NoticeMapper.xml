@@ -47,8 +47,8 @@
 		<selectKey keyProperty="boardNum" resultType="Long" order="BEFORE">
   			SELECT BOARD_SEQ.NEXTVAL FROM DUAL
   		</selectKey>
-		INSERT INTO NOTICE
-	  	VALUES((#{boardNum}, #{boardTitle}, #{boardWriter},#{boardContents}, SYSDATE, 0)	
+		INSERT INTO NOTICE (BOARDNUM, BOARDTITLE, BOARDWRITER, BOARDCONTENTS, BOARDDATE, BOARDCHECK)
+	  	VALUES(#{boardNum}, #{boardTitle}, #{boardWriter},#{boardContents}, SYSDATE, 0)	
 	</insert>
 	
 	<!-- File Add -->
