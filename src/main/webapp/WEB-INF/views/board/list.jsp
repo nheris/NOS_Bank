@@ -62,6 +62,17 @@
                                 </tr>
                             </thead>
                             <tbody>
+                            
+                            
+                            	<c:if test="${list.size()==0}">
+                            		<tr>
+                            			<td colspan="4">검색결과 없습니다.</td>
+                           			</tr>
+                            	</c:if>
+                            
+                            
+                            
+                            
                             	<c:forEach items="${list}" var="dto">
                             		<c:set var="f" value="0"></c:set>
                             			<c:catch>
