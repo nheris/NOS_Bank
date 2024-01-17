@@ -70,9 +70,9 @@ public class NoticeService implements BoardService{
 	}
 
 	@Override
-	public int setUpdate(BoardDTO boardDTO) throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
+	public int setUpdate(BoardDTO boardDTO, MultipartFile[] attachs) throws Exception {
+		//HDD에 파일 저장
+		return boardDAO.setUpdate(boardDTO);
 	}
 
 	@Override

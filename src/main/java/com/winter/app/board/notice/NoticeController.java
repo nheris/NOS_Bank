@@ -30,6 +30,17 @@ public class NoticeController {
 	@Qualifier("noticeService")
 	private BoardService boardService;
 	
+	//Controller의 모든 메서드에 공통 Data들을 model에 담으려 할 때 사용
+	@ModelAttribute("board")
+	public String getBoard() {
+		return "notice";
+	}
+	@ModelAttribute("bbs")
+	public Integer getKind() {
+		return 0;
+	}
+	
+	
 	//list
 	//@RequestMapping(value = "list", method=RequestMethod.GET)
 	@GetMapping("list")
@@ -58,15 +69,21 @@ public class NoticeController {
 		return "redirect:./list";
 	}
 	
-	//Controller의 모든 메서드에 공통 Data들을 model에 담으려 할 때 사용
-	@ModelAttribute("board")
-	public String getBoard() {
-		return "notice";
+	
+	//delete
+	
+	//update
+	@GetMapping("update")
+	public String setUpdate(BoardDTO boardDTO, Model model) throws Exception{
+		boardDTO = boardService.getDetail(boardDTO);
+		model.addAttribute("boardDTO", boardDTO);
+		
+		return "board/update";
 	}
-	//
-	@ModelAttribute("bbs")
-	public Integer getKind() {
-		return 0;
-	}
+	@PostMapping("update")
+	public String setUpdate(BoardDTO boardDTO, MultipartFile[] attachs)throws Exception{
+		int result = boardService.setUpdate(boardDTO, attachs);
+		return "redirect:./list";
+	} 
 }
 

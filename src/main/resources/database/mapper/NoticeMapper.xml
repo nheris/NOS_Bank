@@ -58,4 +58,18 @@
 		(BOARD_SEQ.NEXTVAL, #{boardNum},#{fileName},#{oriName})
 	</insert>
 	
+	<!-- UPDATE -->
+	<update id="setUpdate" parameterType="BoardDTO">
+		UPDATE NOTICE
+		<set>
+			<if test="boardTitle != null and boardTitle !=''">
+			BOARDTITLE=#{boardTitle},
+			</if>
+			<if test="boardContents != null">
+			BOARDCONTENTS=#{boardContents}
+			</if>
+		</set>
+		WHERE BOARDNUM=#{boardNum}
+	</update>
+	
 </mapper>
