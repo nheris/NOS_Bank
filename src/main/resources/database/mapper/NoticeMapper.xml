@@ -15,6 +15,10 @@
 			  	   ORDER BY BOARDNUM DESC)N)
 		WHERE R BETWEEN #{startRow} AND #{lastRow}
 	</select>
+	<select id="getTotalCount" resultType="Long" parameterType="Pager">
+		SELECT COUNT(BOARDNUM)
+		FROM NOTICE
+	</select>
 	
 	
 	<!-- detail -->

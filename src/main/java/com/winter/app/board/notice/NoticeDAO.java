@@ -18,41 +18,45 @@ public class NoticeDAO implements BoardDAO{
 	
 	private final String namespace="com.winter.app.board.notice.NoticeDAO.";
 	
+	//list
 	@Override
 	public Long getTotalCount(Pager pager) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		return sqlSession.selectOne(namespace+"getTotalCount", pager);
 	}
-
 	@Override
 	public List<BoardDTO> getList(Pager pager) throws Exception {
 		return sqlSession.selectList(namespace+"getList", pager);
 	}
-
+	
+	//detail
 	@Override
 	public BoardDTO getDetail(BoardDTO boardDTO) throws Exception {
 		return sqlSession.selectOne(namespace+"getDetail", boardDTO);
 	}
-
+	
+	//add
 	@Override
 	public int setAdd(BoardDTO boardDTO) throws Exception {
 		return sqlSession.insert(namespace+"setAdd", boardDTO);
 	}
-
+	public int setFileAdd(BoardFileDTO boardFileDTO) throws Exception{
+		return sqlSession.insert(namespace+"setFileAdd", boardFileDTO);
+	}
+	
+	
+	//update
 	@Override
 	public int setUpdate(BoardDTO boardDTO) throws Exception {
 		// TODO Auto-generated method stub
 		return sqlSession.update(namespace+"setUpdate", boardDTO);
 	}
-
+	
+	//delete
 	@Override
 	public int setDelete(BoardDTO boardDTO) throws Exception {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 	
-	public int setFileAdd(BoardFileDTO boardFileDTO) throws Exception{
-		return sqlSession.insert(namespace+"setFileAdd", boardFileDTO);
-	}
 	
 }

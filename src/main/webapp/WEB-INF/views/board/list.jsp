@@ -24,6 +24,30 @@
 					<h1 class="display-5 fw-bolder mb-0"><span class="text-gradient d-inline">${board}List</span></h1>
 				</div>
 				
+				<div>
+					<form class="row g-3" action="./list">
+					  <div class="col-auto">
+						  <select name="kind" class="form-select" aria-label="Default select example">
+							  <option value="kind1">Title</option>
+							  <option value="kind2">Contents</option>
+							  <option value="kind3">Writer</option>
+							  <option value="kind4">Title+Contents+Writer</option>
+						</select>
+					  </div>		
+					
+					  <div class="col-auto">
+					    <label for="search" class="visually-hidden">Search</label>
+					    <input type="text" name="search" class="form-control" id="search">
+					  </div>
+					  <div class="col-auto">
+					    <button type="submit" class="btn btn-primary mb-3">검색</button>
+					  </div>
+					</form>
+				</div>
+				
+				
+				
+				
 				<div class="row gx-5 justify-content-center">
                 	<div class="col-lg-11 col-xl-9 col-xxl-8">
                 		<!-- table -->
@@ -73,6 +97,25 @@
                             </tbody>
                         </table>
                         
+                        <nav aria-label="Page navigation example">
+						  <ul class="pagination">
+						    <li class="page-item">
+						      <a class="page-link" href="#" aria-label="Previous">
+						        <span aria-hidden="true">&laquo;</span>
+						      </a>
+						    </li>
+						    
+						    <c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="i">
+						    <li class="page-item"><a class="page-link" href="./list?page=${i}">${i}</a></li>
+						    </c:forEach>
+						    
+						    <li class="page-item">
+						      <a class="page-link" href="#" aria-label="Next">
+						        <span aria-hidden="true">&raquo;</span>
+						      </a>
+						    </li>
+						  </ul>
+						</nav>
                         
                         <div>
                         	<a href="./add" class="btn btn-danger">글쓰기</a>

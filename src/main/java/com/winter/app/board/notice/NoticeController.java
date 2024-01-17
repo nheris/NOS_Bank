@@ -46,6 +46,7 @@ public class NoticeController {
 	@GetMapping("list")
 	public String gerList(Pager pager, Model model) throws Exception{
 		List<BoardDTO> ar = boardService.getList(pager);
+		model.addAttribute("pager", pager);
 		model.addAttribute("list",ar);
 		return "board/list";
 	}
@@ -67,6 +68,7 @@ public class NoticeController {
 	public String setAdd(BoardDTO boardDTO, MultipartFile[] attachs) throws Exception{
 		int result = boardService.setAdd(boardDTO, attachs);
 		return "redirect:./list";
+		
 	}
 	
 	
@@ -79,6 +81,7 @@ public class NoticeController {
 		model.addAttribute("boardDTO", boardDTO);
 		
 		return "board/update";
+		//return "redirect:./detail?boardNum="+boardDTO.getBoardNum();
 	}
 	@PostMapping("update")
 	public String setUpdate(BoardDTO boardDTO, MultipartFile[] attachs)throws Exception{
