@@ -21,7 +21,7 @@
             
    			<section class="py-5">
 				<div class="text-center mb-5">
-					<h1 class="display-5 fw-bolder mb-0"><span class="text-gradient d-inline">${board}Add</span></h1>
+					<h1 class="display-5 fw-bolder mb-0"><span class="text-gradient d-inline">${board}Update</span></h1>
 				</div>
 				
 				<div class="row gx-5 justify-content-center">

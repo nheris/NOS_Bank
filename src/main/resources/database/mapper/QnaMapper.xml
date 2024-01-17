@@ -78,6 +78,19 @@
   		(#{boardNum}, #{boardTitle}, #{boardWriter},#{boardContents}, SYSDATE, 0,#{boardRef},#{boardStep},#{boardDepth}, 0)
   	</insert>
   	
+  	<!-- UPDATE -->
+  	<update id="setUpdate" parameterType="BoardDTO">
+  		UPDATE QNA
+  		<set>
+  			<if test="boardTitle!=null and boardTitle!=''">
+		  		BOARDTITLE=#{boardTitle},
+  			</if>
+  			<if test="boardContents!=null">
+  				BOARDCONTENTS=#{boardContents}
+  			</if>
+  		</set>
+  		WHERE BOARDNUM=#{boardNum}
+  	</update>
   	
   	
   	<!-- DELETE -->

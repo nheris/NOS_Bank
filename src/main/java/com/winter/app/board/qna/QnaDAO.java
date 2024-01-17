@@ -57,8 +57,7 @@ public class QnaDAO implements BoardDAO{
 	//update
 	@Override
 	public int setUpdate(BoardDTO boardDTO) throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
+		return sqlSession.update(namespace+"setUpdate", boardDTO);
 	}
 	
 	//delete

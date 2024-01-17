@@ -74,6 +74,19 @@ public class QnaController {
 		int result = boardService.setReply(qnaDTO, attachs);
 		return "redirect:./list";
 	}
+	//update
+	@GetMapping("update")
+	public String setUpdate (BoardDTO boardDTO, Model model)throws Exception{
+		boardDTO = boardService.getDetail(boardDTO);
+		model.addAttribute("boardDTO", boardDTO);
+		return "board/update";
+	}
+	@PostMapping("update")
+	public String setUpdate (BoardDTO boardDTO,MultipartFile[] attachs) throws Exception{
+		int result =boardService.setUpdate(boardDTO, attachs);
+		return "redirect:./list";
+	}
+	
 	
 	//delete
 	@PostMapping("delete")
