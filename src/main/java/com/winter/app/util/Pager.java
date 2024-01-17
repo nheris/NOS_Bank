@@ -32,9 +32,16 @@ public class Pager {
 	}
 
 	public void makeNum(Long totalCount) {
+		
+		if(totalCount<1) {
+			totalCount=1L;
+		}
+	
 		/**
 		 * 페이지 계산 region말고 다른데에도 쓸거니 pager에
 		 */
+		
+		
 		//1. 총 갯수로 총 페이지 수 구하기
 		Long totalPage=0L;
 		totalPage = totalCount/this.getPerPage();
