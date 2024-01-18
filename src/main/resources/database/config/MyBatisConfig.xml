@@ -12,6 +12,9 @@
   		<typeAlias type="com.winter.app.board.qna.QnaDTO" alias="QnaDTO"/>
   		<typeAlias type="com.winter.app.board.BoardDTO" alias="BoardDTO"/>
   		<typeAlias type="com.winter.app.board.BoardFileDTO" alias="BoardFileDTO"/>
+  		
+  		<typeAlias type="com.winter.app.member.AvatarDTO" alias="AvatarDTO"/>
+  		<typeAlias type="com.winter.app.member.MemberDTO" alias="MemberDTO"/>
   	</typeAliases>
   
   </configuration>
