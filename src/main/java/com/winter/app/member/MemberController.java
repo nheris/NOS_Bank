@@ -72,4 +72,10 @@ public class MemberController {
 		return "redirect:../";
 	}
 	
+	@GetMapping("mypage")
+	public void getMypage(HttpSession session) throws Exception{
+		session.setAttribute("dto", session);
+		
+	}
+	
 }
