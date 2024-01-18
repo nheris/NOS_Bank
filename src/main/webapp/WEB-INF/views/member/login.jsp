@@ -27,6 +27,10 @@
 		
 			<div class="row gx-5 justify-content-center">
 	             	<div class="col-lg-11 col-xl-9 col-xxl-8">
+	             		<div>
+	             			${msg}
+	             		</div>
+	             	
            		    	<form action="./login" method="post">
                       		<div class="input-group mb-3">
 							  <span class="input-group-text" id="basic-addon1">ID</span>

@@ -44,13 +44,31 @@ public class MemberController {
 		
 	}
 	@PostMapping("login")
-	public String getLogin(MemberDTO memberDTO, HttpSession session) throws Exception{
+	public String getLogin(MemberDTO memberDTO, HttpSession session, Model model) throws Exception{
 		memberDTO = memberService.getLogin(memberDTO);
+		
+		if(memberDTO == null) {
+			model.addAttribute("msg","ID 또는 PW 확인");
+			return "member/login";
+		}
+		
 		//내장객체 session
-		//request.getSession(), ao: HttpServletRequest request 또는
+		//request.getSession(), 매개: HttpServletRequest request 또는
 		session.setAttribute("member", memberDTO);
 		System.out.println("Login : "+memberDTO);
 		
+		return "redirect:../";
+	}
+	
+	@GetMapping("logout")
+	public String getLogout(HttpSession session) throws Exception{
+		//방법1
+		//session.setAttribute("member", null);
+		//방법2,3,4
+		//session.removeAttribute("member");
+		//session.removeValue("member"); 쓰지x
+		//방법4 시간 0으로 
+		session.invalidate();
 		return "redirect:../";
 	}
 	
