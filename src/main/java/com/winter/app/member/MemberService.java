@@ -19,7 +19,7 @@ public class MemberService {
 	private ServletContext servletContext;
 	
 	
-	
+	//join
 	public int join(MemberDTO memberDTO, MultipartFile attachs) throws Exception {
 		int result = memberDAO.join(memberDTO);
 		
@@ -41,6 +41,7 @@ public class MemberService {
 		return result;
 	}
 	
+	//login
 	public MemberDTO getLogin(MemberDTO memberDTO) throws Exception{
 		MemberDTO m= memberDAO.getDetail(memberDTO);
 		

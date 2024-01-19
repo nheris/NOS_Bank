@@ -21,6 +21,7 @@ public class MemberController {
 	@Autowired
 	private MemberService memberService;
 	
+	//join	
 	@GetMapping("join")
 	public void join() throws Exception{
 		
@@ -39,6 +40,7 @@ public class MemberController {
 		return "/commons/result";
 	}
 	
+	//login
 	@GetMapping("login")
 	public void getLogin() throws Exception{
 		
@@ -52,7 +54,7 @@ public class MemberController {
 			return "member/login";
 		}
 		
-		//내장객체 session
+		//내장객체 session  <-로그인 유지되어야함으로 session에 저장
 		//request.getSession(), 매개: HttpServletRequest request 또는
 		session.setAttribute("member", memberDTO);
 		System.out.println("Login : "+memberDTO);
@@ -60,18 +62,20 @@ public class MemberController {
 		return "redirect:../";
 	}
 	
+	//logout
 	@GetMapping("logout")
 	public String getLogout(HttpSession session) throws Exception{
 		//방법1
 		//session.setAttribute("member", null);
-		//방법2,3,4
+		//방법2,3
 		//session.removeAttribute("member");
 		//session.removeValue("member"); 쓰지x
-		//방법4 시간 0으로 
+		//방법4 Session 삭제:유효시간을 0으로 만듦
 		session.invalidate();
 		return "redirect:../";
 	}
 	
+	//mypage 수정 
 	@GetMapping("mypage")
 	public void getMypage(HttpSession session) throws Exception{
 		session.setAttribute("dto", session);

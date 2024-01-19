@@ -12,6 +12,7 @@ public class MemberDAO {
 	private SqlSession sqlSession;
 	private final String NAMESPACE ="com.winter.app.member.MemberDAO.";
 	
+	//join
 	public int join(MemberDTO memberDTO)throws Exception {
 		return sqlSession.insert(NAMESPACE+"join", memberDTO);
 	}
@@ -20,6 +21,7 @@ public class MemberDAO {
 		return sqlSession.insert(NAMESPACE+"setFileAdd", avatarDTO);
 	}
 	
+	//login
 	public MemberDTO getDetail(MemberDTO memberDTO) throws Exception{
 		return sqlSession.selectOne(NAMESPACE+"getDetail", memberDTO);
 	}

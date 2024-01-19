@@ -5,6 +5,8 @@
   
 <!-- namespace 비우면 에러 -->
 <mapper namespace="com.winter.app.member.MemberDAO">
+	
+	<!-- JOIN -->
 	<insert id="join" parameterType="MemberDTO">
 		INSERT INTO MEMBER (USERNAME, PASSWORD, NAME, EMAIL, PHONE, ADDRESS)
 		VALUES (#{userName}, #{password},#{name}, #{email},#{phone},#{address})
@@ -15,7 +17,7 @@
 		VALUES (BOARD_SEQ.NEXTVAL,#{userName},#{fileName},#{oriName})
 	</insert>
 
-
+	<!-- LOGIN -->
 	<select id="getDetail" parameterType="MemberDTO" resultMap="getDetailResult">
 		SELECT *
 		FROM MEMBER
