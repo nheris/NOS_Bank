@@ -3,6 +3,7 @@
 
                 <div class="row gx-5 justify-content-center">
                     <div class="col-lg-11 col-xl-9 col-xxl-8">
+                   		 <!-- action은 생략 가능, 현재 URL이 action으로 지정 -->
                         <form method="POST" enctype="multipart/form-data">
                           <input type="hidden" name="boardNum" value="${boardDTO.boardNum}">
                           <div class="mb-3">
