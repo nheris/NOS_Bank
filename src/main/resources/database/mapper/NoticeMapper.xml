@@ -76,4 +76,14 @@
 		WHERE BOARDNUM=#{boardNum}
 	</update>
 	
+	<!-- DELETE -->
+	<!-- file List -->
+	<select id="getFileList" parameterType="BoardDTO" resultType="BoardFileDTO">
+		SELECT FILENAME FROM NOTICEFILES 
+		WHERE BOARDNUM=#{boardNum}
+	</select>
+	<!-- delete -->
+	<delete id="setDelete" parameterType="BoardDTO">
+		DELETE NOTICE WHERE BOARDNUM=#{boardNum}
+	</delete>
 </mapper>

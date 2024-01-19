@@ -77,9 +77,6 @@ public class NoticeController {
 		
 	}
 	
-	
-	//delete
-	
 	//update
 	@GetMapping("update")
 	public String setUpdate(BoardDTO boardDTO, Model model) throws Exception{
@@ -94,5 +91,12 @@ public class NoticeController {
 		int result = boardService.setUpdate(boardDTO, attachs);
 		return "redirect:./list";
 	} 
+	
+	//delete
+	@PostMapping("delete")
+	public String setDelete(BoardDTO boardDTO) throws Exception{
+		int result=boardService.setDelete(boardDTO);
+		return "redirect:./list";
+	}
 }
 
