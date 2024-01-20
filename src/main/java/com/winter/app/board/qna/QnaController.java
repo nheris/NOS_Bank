@@ -42,6 +42,7 @@ public class QnaController {
 	@GetMapping("list")
 	public String getList(Pager pager,Model model) throws Exception{
 		List<BoardDTO> ar = boardService.getList(pager);
+		model.addAttribute("pager", pager);
 		model.addAttribute("list",ar);
 		model.addAttribute("board","QnA");
 		return "board/list";

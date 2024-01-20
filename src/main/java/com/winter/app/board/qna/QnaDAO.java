@@ -18,12 +18,11 @@ public class QnaDAO implements BoardDAO{
 	
 	private final String namespace="com.winter.app.board.qna.QnaDAO.";
 	
+	//list
 	@Override
 	public Long getTotalCount(Pager pager) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		return sqlSession.selectOne(namespace+"getTotalCount", pager);
 	}
-	//list
 	@Override
 	public List<BoardDTO> getList(Pager pager) throws Exception {
 		return sqlSession.selectList(namespace+"getList" ,pager);

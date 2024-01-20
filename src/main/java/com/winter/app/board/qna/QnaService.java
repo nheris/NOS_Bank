@@ -28,7 +28,9 @@ public class QnaService implements BoardService{
 	//list
 	@Override
 	public List<BoardDTO> getList(Pager pager) throws Exception {
+		Long total = boardDAO.getTotalCount(pager);
 		pager.makeRow();
+		pager.makeNum(total);
 		
 		return boardDAO.getList(pager);
 	}

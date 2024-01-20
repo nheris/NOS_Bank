@@ -6,14 +6,33 @@
 <!-- namespace 비우면 에러 -->
 <mapper namespace="com.winter.app.board.qna.QnaDAO">
 	
+	<sql id="search">
+  		<where>
+  			<if test="kind == 'kind1' or kind=='kind4'">
+  				BOARDTITLE LIKE '%'||#{search}||'%'
+  			</if>
+  			<if test="kind == 'kind2' or kind=='kind4'">
+  				OR BOARDCONTENTS LIKE '%'||#{search}||'%'
+  			</if>
+  			<if test="kind == 'kind3' or kind=='kind4'">
+  				OR BOARDWRITER LIKE '%'||#{search}||'%'
+  			</if>
+  			
+  		</where>
+  	</sql>
+  	
 	<!-- list -->
 	<select id="getList" resultType="QnaDTO" parameterType="Pager">
 		SELECT *
 			FROM (SELECT ROWNUM R, N.*
 				  FROM(SELECT * FROM QNA 
-				  	   
+				  	   <include refid="search"></include>
 				  	   ORDER BY BOARDREF DESC, BOARDSTEP ASC)N)
 			WHERE R BETWEEN #{startRow} AND #{lastRow}
+	</select>
+	<select id="getTotalCount" resultType="Long" parameterType="Pager">
+		SELECT COUNT(BOARDNUM)
+		FROM QNA
 	</select>
 	
 	
