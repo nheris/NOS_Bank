@@ -69,6 +69,7 @@ public class NoticeController {
 	}
 	@PostMapping("add")
 	public String setAdd(BoardDTO boardDTO, MultipartFile[] attachs, HttpSession session) throws Exception{
+		//작성자 username으로
 		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
 		boardDTO.setBoardWriter(memberDTO.getUserName());
 				

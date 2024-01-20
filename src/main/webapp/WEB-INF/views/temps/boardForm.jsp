@@ -11,6 +11,7 @@
                             <input type="text" class="form-control" id="title" value="${boardDTO.boardTitle}" name="boardTitle">
                           </div>
                           
+                          <!--  Writer username으로 -->
                           <%-- <div class="mb-3">
                             <label for="writer" class="form-label">Writer</label>
                             <input type="text" value="${boardDTO.boardWriter}" class="form-control" id="writer" name="boardWriter">
