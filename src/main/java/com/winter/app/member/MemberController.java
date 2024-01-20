@@ -57,7 +57,7 @@ public class MemberController {
 		//내장객체 session  <-로그인 유지되어야함으로 session에 저장
 		//request.getSession(), 매개: HttpServletRequest request 또는
 		session.setAttribute("member", memberDTO);
-		System.out.println("Login : "+memberDTO);
+		//System.out.println("Login : "+memberDTO);
 		
 		return "redirect:../";
 	}
@@ -75,11 +75,7 @@ public class MemberController {
 		return "redirect:../";
 	}
 	
-	//mypage 수정 
+	//mypage
 	@GetMapping("mypage")
-	public void getMypage(HttpSession session) throws Exception{
-		session.setAttribute("dto", session);
-		
-	}
-	
+	public void getMypage()throws Exception{}
 }

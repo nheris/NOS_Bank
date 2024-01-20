@@ -33,7 +33,7 @@
 	             	
            		    	<form action="./login" method="post">
                       		<div class="input-group mb-3">
-							  <span class="input-group-text" id="basic-addon1">ID</span>
+							  <span class="input-group-text" id="basic-addon1">&nbsp ID &nbsp</span>
 							  <input type="text" class="form-control"  name="userName" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
 							</div>
 							

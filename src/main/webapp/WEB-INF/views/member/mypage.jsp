@@ -28,43 +28,56 @@
                     <div class="row gx-5 justify-content-center">
                         <div class="col-lg-11 col-xl-9 col-xxl-8">
 
-                            <!--project-->
+                            
+							<!-- Project Card 1-->
                             <div class="card overflow-hidden shadow rounded-4 border-0 mb-5">
                                 <div class="card-body p-0">
                                     <div class="d-flex align-items-center">
                                         <div class="p-5">
-                                            <h2 class="fw-bolder">${boardDTO.boardTitle}</h2>
-                                            <div>
-                                            	${boardDTO.boardContents}
-                                            </div>
-                                            
-                                            <div>
-                                            	<c:forEach items="${boardDTO.fileDTOs}" var="f">
-                                            		<a href="../resources/upload/${board}/${f.fileName}">${f.oriName}</a>
-                                            	</c:forEach>
-                           
-                                            </div>
+                                            <h2 class="fw-bolder">${member.userName}</h2>
                                             
                                             
+												<ol class="list-group list-group-numbered">
+												  <li class="list-group-item d-flex justify-content-between align-items-start">
+												    <div class="ms-2 me-auto">
+												      <div class="fw-bold">Name</div>
+												      ${member.name}
+												    </div>
+												    <span class="badge bg-primary rounded-pill"></span>
+												  </li>
+												  <li class="list-group-item d-flex justify-content-between align-items-start">
+												    <div class="ms-2 me-auto">
+												      <div class="fw-bold">Email</div>
+												      ${member.email}
+												    </div>
+												    <span class="badge bg-primary rounded-pill">!</span>
+												  </li>
+												  <li class="list-group-item d-flex justify-content-between align-items-start">
+												    <div class="ms-2 me-auto">
+												      <div class="fw-bold">Phone</div>
+												      ${member.phone}
+												    </div>
+												    <span class="badge bg-primary rounded-pill">!</span>
+												  </li>
+												  <li class="list-group-item d-flex justify-content-between align-items-start">
+												    <div class="ms-2 me-auto">
+												      <div class="fw-bold">Address</div>
+												      ${member.address}
+												    </div>
+												    <span class="badge bg-primary rounded-pill">!</span>
+												  </li>
+												</ol>
+												
+												
+                                       
+
                                         </div>
+                                        <img class="img-fluid" src="/resources/upload/member/${member.avatarDTO.fileName}" alt="..." />
                                     </div>
                                 </div>
                             </div>
-                            <!-- notice엔 답글버튼 없게 -->
-							<%-- <c:if test="${board ne 'Notice'}"> --%>
-                            <div>
-                                <c:if test="${bbs eq '1'}">
-                                    <a class="btn btn-primary" href="./reply?boardNum=${boardDTO.boardNum}">답글</a>
-
-                                </c:if>
-                                <a id="update" class="btn btn-success" href="#">Update</a>
-                                <a id="delete" class="btn btn-danger" href="#">Delete</a>
-
-                                <form id="frm" action="./update" method="get">
-                                    <input type="hidden" name="boardNum" value="${boardDTO.boardNum}">
-                                </form>
-                            </div>
-							
+                            
+                            
 
                         </div>
                     </div>
