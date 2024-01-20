@@ -37,13 +37,10 @@ public class NoticeDAOTest extends MyTest{
 	public void test2() throws Exception {
 		BoardDTO boardDTO = new BoardDTO();
 		
-		Calendar calendar = null;
-		Date time = (Date) calendar.getTime();
 		for(int i=0;i<60;i++) {
 			boardDTO.setBoardTitle("TITLE"+i);
 			boardDTO.setBoardWriter("관리자");
 			boardDTO.setBoardContents("내용");
-			boardDTO.setBoardDate(time);
 			boardDTO.setBoardCheck(0L);
 			
 			int result = noticeDAO.setAdd(boardDTO);
