@@ -60,13 +60,13 @@
                                     </div>
 
                                     <!-- 첨부파일 input-->
-                                    <div class="mb-3" name="attach">
+                                    <div class="mb-3">
                                         <label for="rate">파일첨부</label>
-                                        <input class="form-control"  type="file" />
-                                        <input class="form-control"  type="file" />
-                                        <input class="form-control"  type="file" />
-                                        <input class="form-control"  type="file" />
-                                        <input class="form-control"  type="file" />
+                                        <input class="form-control"  type="file" name="attachs"/>
+                                        <input class="form-control"  type="file" name="attachs"/>
+                                        <input class="form-control"  type="file" name="attachs"/>
+                                        <input class="form-control"  type="file" name="attachs"/>
+                                        <input class="form-control"  type="file" name="attachs"/>
                                     </div>
 
                                     <div class="d-none" id="submitErrorMessage"><div class="text-center text-danger mb-3">Error sending message!</div></div>

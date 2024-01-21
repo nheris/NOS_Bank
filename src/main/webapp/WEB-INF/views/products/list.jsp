@@ -23,6 +23,28 @@
                	 	<h1 class="display-5 fw-bolder mb-0"><span class="text-gradient d-inline">Product List</span></h1>
                 </div>
 				
+				
+				<!-- 서치 -->
+				<div>
+					<form class="row g-3" action="./list">
+					  <div class="col-auto">
+						  <select name="kind" class="form-select" aria-label="Default select example">
+							  <option class="a" value="kind1">상품명</option>
+							  <option class="a" value="kind2">상품설명</option>
+						</select>
+					  </div>		
+					
+					  <div class="col-auto">
+					    <label for="search" class="visually-hidden">Search</label>
+					    <input type="text" name="search" class="form-control" id="search">
+					  </div>
+					  <div class="col-auto">
+					    <button type="submit" class="btn btn-primary mb-3">검색</button>
+					  </div>
+					</form>
+				</div>
+				
+				<!-- 테이 -->
 				<table class="table table-hover">
 					<thead>
 						<tr>
@@ -39,7 +61,9 @@
 						<c:forEach items="${list}" var="dto" >
 							<tr>
 								<td>${dto.productNum}</td>
-								<td>${dto.productName}</td>
+								<td>
+									<a href="./detail?productNum=${dto.productNum}">${dto.productName}</a>
+								</td>
 								<td>${dto.productContents}</td>
 								<td>${dto.productRate}</td>
 								<td>${dto.productJumsu}</td>
@@ -50,29 +74,32 @@
 					</tbody>
 				</table>
 				
-				
-<%-- 				<nav aria-label="Page navigation example">
+				<!-- 페이징 -->
+				<nav aria-label="Page navigation example">
 				  <ul class="pagination">
 				  
+				  	<c:if test="${!pager.start}">
 				    <li class="page-item">
-				      <a class="page-link" href="#" aria-label="Previous">
+				      <a class="page-link" href="./list?page=${pager.startNum-1}&kind=${pager.kind}&search=${pager.search}" aria-label="Previous">
 				        <span aria-hidden="true">&laquo;</span>
 				      </a>
 				    </li>
+				  	</c:if>
 				    
-				    <c:forEach begin="${pager.startNum}" end="${pager.endNum}" var="i">
-				    <li class="page-item"><a class="page-link" href="./list?page=${pager.pager}">${i}</a></li>
+				    <c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="i">
+				    <li class="page-item"><a class="page-link" href="./list?page=${i}&kind=${pager.kind}&search=${pager.search}">${i}</a></li>
 				    </c:forEach>
 
-				    
+				    <c:if test="${!pager.last}">
 				    <li class="page-item">
-				      <a class="page-link" href="#" aria-label="Next">
+				      <a class="page-link" href="./list?page=${pager.lastNum+1}&kind=${pager.kind}&search=${pager.search}" aria-label="Next">
 				        <span aria-hidden="true">&raquo;</span>
 				      </a>
 				    </li>
+				    </c:if>
 				    
 				  </ul>
-				</nav> --%>
+				</nav>
 				
 				
 				<div>

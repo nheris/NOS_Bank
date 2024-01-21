@@ -5,15 +5,97 @@
   
 <!-- namespace 비우면 에러 -->
 <mapper namespace="com.winter.app.product.ProductDAO">
+	<sql id="search">
+		WHERE
+		<choose>
+			<!-- <if test="kind == 'kind1'"> -->
+			<when test="kind == 'kind2'">
+			PRODUCTCONTENTS LIKE '%'||#{search}||'%'
+			</when>
+			<otherwise>
+			PRODUCTNAME LIKE '%'||#{search}||'%'
+			</otherwise>
+		</choose>
+	</sql>
+	
+	
 	<!-- list -->
 	<select id="getList" resultType="ProductDTO" parameterType="Pager">
 		SELECT *
 		FROM( SELECT ROWNUM RN, R.* 
 			  FROM (SELECT * FROM PRODUCT
+			  		<include refid="search"></include>
 					ORDER BY PRODUCTNUM DESC) R)
-		WHERE RN BETWEEN #{startNum} AND #{lastNum}
+		WHERE RN BETWEEN #{startRow} AND #{lastRow}
+		
+		
 	</select>
 	<select id="getTotal" resultType="Long">
-		SELECT COUNT(PRODUCTNUM) FROM PRODUCT;
+		SELECT COUNT(PRODUCTNUM) FROM PRODUCT
 	</select>
+	
+	<!-- detail -->
+	<select id="detail" parameterType="ProductDTO" resultMap="detailResult">
+		SELECT *
+		FROM PRODUCT
+			 LEFT JOIN
+			 PRODUCTFILES
+			 USING (PRODUCTNUM)
+		WHERE PRODUCTNUM = #{productNum}
+	</select>
+	<resultMap type="ProductDTO" id="detailResult">
+		<id column="PRODUCTNUM" property="productNum"/>
+		<result column="PRODUCTNAME" property="productName"/>
+		<result column="PRODUCTCONTENTS" property="productContents"/>
+		<result column="PRODUCTRATE" property="productRate"/>
+		<result column="PRODUCTJUMSU" property="productJumsu"/>
+		<result column="PRODUCTCOUNT" property="productCount"/>
+		<result column="PRODUCTSALE" property="productSale"/>
+		<collection property="fileDTOs" javaType="List" ofType="ProductFileDTO">
+			<id column="FILENUM" property="fileNum"/>
+			<result column="FILENAME" property="fileName"/>
+			<result column="ORINAME" property="oriName"/>
+		</collection>
+	</resultMap>
+	
+	<!-- add -->
+	<insert id="add" parameterType="ProductDTO">
+		<selectKey keyProperty="productNum" order="BEFORE" resultType="Long">
+  			SELECT PRODUCT_SEQ.NEXTVAL FROM DUAL
+  		</selectKey>
+		INSERT INTO PRODUCT
+		VALUES (#{productNum}, #{productName}, #{productContents}, #{productRate}, 0.0, 0, 1)
+	</insert>
+	<insert id="fileAdd" parameterType="ProductFileDTO">
+		INSERT INTO PRODUCTFILES
+		VALUES (PRODUCTFILES_SEQ.NEXTVAL, #{productNum},#{fileName},#{oriName})
+	</insert>
+	
+	<!-- update -->
+	<update id="update" parameterType="ProductDTO">
+		UPDATE PRODUCT
+		<set>
+			<if test="productName != null and productName != ''">
+			PRODUCTNAME = #{productName},
+			</if>
+			<if test="productContents != null and productContents != ''">
+			PRODUCTCONTENTS = #{productContents},
+			</if>
+			<if test="productRate != ''">
+			PRODUCTRATE = #{productRate}
+			</if>
+		</set>
+		WHERE PRODUCTNUM = #{productNum}
+	</update>
+	
+	<!-- delete -->
+	<select id="fileList" parameterType="ProductDTO" resultType="ProductFileDTO">
+		SELECT FILENAME FROM PRODUCTFILES
+		WHERE PRODUCTNUM = #{productNum}
+	</select>
+	<delete id="delete" parameterType="ProductDTO">
+		DELETE PRODUCT WHERE PRODUCTNUM = #{productNum}
+	</delete>
+	
+	
 </mapper>

@@ -1,5 +1,7 @@
 package com.winter.app.product;
 
+import java.util.List;
+
 public class ProductDTO {
 	private Long productNum;
 	private String productName;
@@ -8,6 +10,8 @@ public class ProductDTO {
 	private Double productJumsu;
 	private Double productCount;
 	private Integer productSale;
+	
+	private List<ProductFileDTO> fileDTOs;
 	
 	
 	public Long getProductNum() {
@@ -32,6 +36,9 @@ public class ProductDTO {
 		return productRate;
 	}
 	public void setProductRate(Double productRate) {
+		if(productRate==null || productRate<0) {
+			productRate = 0.0;
+		}
 		this.productRate = productRate;
 	}
 	public Double getProductJumsu() {
@@ -51,6 +58,12 @@ public class ProductDTO {
 	}
 	public void setProductSale(Integer productSale) {
 		this.productSale = productSale;
+	}
+	public List<ProductFileDTO> getFileDTOs() {
+		return fileDTOs;
+	}
+	public void setFileDTOs(List<ProductFileDTO> fileDTOs) {
+		this.fileDTOs = fileDTOs;
 	}
 
 	
