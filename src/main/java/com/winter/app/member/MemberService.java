@@ -1,6 +1,7 @@
 package com.winter.app.member;
 
 import javax.servlet.ServletContext;
+import javax.servlet.http.HttpSession;
 import javax.swing.plaf.multi.MultiOptionPaneUI;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,6 +55,11 @@ public class MemberService {
 			}
 		}
 		return m;
+	}
+	
+	//update
+	public int setUpdate(MemberDTO memberDTO) {
+		return memberDAO.setUpdate(memberDTO);
 	}
 	
 }

@@ -40,5 +40,25 @@
 		</association>
 	</resultMap>
 	
+	<!-- UPDATE -->
+	<update id="setUpdate" parameterType="MemberDTO">
+		UPDATE MEMBER
+		<set>
+			<!-- password는 따로 -->
+			<if test="name!=null and name != ''">
+			NAME = #{name},
+			</if>
+			<if test="email!=null and email != ''">
+			EMAIL = #{email},
+			</if>
+			<if test="phone!=null and phone != ''">
+			PHONE = #{phone},
+			</if>
+			<if test="address!=null and address != ''">
+			ADDRESS = #{address}
+			</if>
+		</set> 
+		WHERE USERNAME = #{userName}
+	</update>
 	
 </mapper>
