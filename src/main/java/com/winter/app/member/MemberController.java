@@ -62,10 +62,6 @@ public class MemberController {
 		return "redirect:../";
 	}
 	
-	@GetMapping("agreement")
-	public void setAgreement() throws Exception{
-		
-	}
 	
 	//logout
 	@GetMapping("logout")
@@ -83,7 +79,7 @@ public class MemberController {
 	//mypage
 	@GetMapping("mypage")
 	public void getMypage(HttpSession session, Model model)throws Exception{
-		//db에서 새로꺼냄
+		////공백으로 회원정보 수정했을때 다시로그인해야 뜨는거..수정? 공백은db에 저장안되니 db에서 새로꺼냄
 		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
 		memberDTO = memberService.getDetail(memberDTO);
 		model.addAttribute("member", memberDTO);
@@ -103,10 +99,17 @@ public class MemberController {
 		MemberDTO m = (MemberDTO)session.getAttribute("member");
 		memberDTO.setUserName(m.getUserName());
 		
-		//수정후 새정보 바로뜨게
+		//수정후 새정보 바로뜨게 근데 이제 db에서 새로꺼내니 필요없을듯..?
 		session.setAttribute("member", memberDTO);
+		
 		int result = memberService.setUpdate(memberDTO);
 		
 		return"redirect:./mypage"; 
+	}
+	
+	//join시 약관동의
+	@GetMapping("agreement")
+	public void setAgreement() throws Exception{
+		
 	}
 }

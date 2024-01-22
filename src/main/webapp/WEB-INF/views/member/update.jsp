@@ -36,7 +36,8 @@
 							
 							<div class="input-group mb-3">
 							  <span class="input-group-text" id="basic-addon3">이름</span>
-							  <input type="text" value="${member.name}" class="form-control" name="name" placeholder="홍길동" aria-label="Name" aria-describedby="basic-addon3">
+							  <input type="text" value="${requestScope.member.name}" class="form-control" name="name" placeholder="홍길동" aria-label="Name" aria-describedby="basic-addon3">
+														<!-- 이름같을 시 scope 수명짧은거부터찾음 -->
 							</div>
 							
 							<div class="input-group mb-3">

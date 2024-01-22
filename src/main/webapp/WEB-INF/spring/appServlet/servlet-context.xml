@@ -34,6 +34,7 @@
 			<beans:ref bean="TestInterceptors"></beans:ref>			
 		</interceptor>
 		
+		<!-- 회원만 가 -->
 		<interceptor>
 			<mapping path="/qna/*"/>
 			<mapping path="/member/mypage"/>
@@ -43,6 +44,7 @@
 			<beans:ref bean="authenticationInterCeptor"/>
 		</interceptor>
 		
+		<!-- 작성자만 가능 -->
 		<interceptor>
 			<mapping path="/qna/update"/>
 			<mapping path="/qna/delete"/>
