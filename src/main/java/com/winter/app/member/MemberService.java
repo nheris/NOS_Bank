@@ -6,6 +6,7 @@ import javax.swing.plaf.multi.MultiOptionPaneUI;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.winter.app.util.FileManager;
@@ -48,7 +49,9 @@ public class MemberService {
 		
 		if(m != null) {
 			if(m.getPassword().equals(memberDTO.getPassword())) {
-				return m;
+				//공백으로 회원정보 수정했을때 다시로그인해야 뜨는거..수정?
+				//@GetMapping("mypage")에서 새로 db 에서 꺼낼거임
+				return memberDTO;
 			}else {
 				m=null;
 				//return null;
@@ -58,8 +61,14 @@ public class MemberService {
 	}
 	
 	//update
-	public int setUpdate(MemberDTO memberDTO) {
+	public int setUpdate(MemberDTO memberDTO) throws Exception {
 		return memberDAO.setUpdate(memberDTO);
+	}
+	
+	//mypage
+	
+	public MemberDTO getDetail(MemberDTO memberDTO) throws Exception {
+		return memberDAO.getDetail(memberDTO);
 	}
 	
 }

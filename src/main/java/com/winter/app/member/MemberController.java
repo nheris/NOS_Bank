@@ -77,17 +77,27 @@ public class MemberController {
 	
 	//mypage
 	@GetMapping("mypage")
-	public void getMypage()throws Exception{}
+	public void getMypage(HttpSession session, Model model)throws Exception{
+		//db에서 새로꺼냄
+		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
+		memberDTO = memberService.getDetail(memberDTO);
+		model.addAttribute("member", memberDTO);
+	}
 	
 	//update
 	@GetMapping("update")
-	public void setUpdate() throws Exception{}
+	public void setUpdate(HttpSession session, Model model) throws Exception{
+		//db에서 새로꺼냄
+		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
+		memberDTO = memberService.getDetail(memberDTO);
+		model.addAttribute("member", memberDTO);
+	}
 	@PostMapping("update")
 	public String setUpdate(MemberDTO memberDTO, HttpSession session) throws Exception{
 		//DB에 업데이트 후 mypage로 이동
 		MemberDTO m = (MemberDTO)session.getAttribute("member");
 		memberDTO.setUserName(m.getUserName());
-		memberDTO.setAvatarDTO(m.getAvatarDTO());
+		
 		//새정보 바로뜨게
 		session.setAttribute("member", memberDTO);
 		int result = memberService.setUpdate(memberDTO);
