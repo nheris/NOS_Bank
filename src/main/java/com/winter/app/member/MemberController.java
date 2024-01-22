@@ -20,7 +20,7 @@ import com.winter.app.board.notice.NoticeDTO;
 public class MemberController {
 	@Autowired
 	private MemberService memberService;
-	
+
 	//join	
 	@GetMapping("join")
 	public void join() throws Exception{
@@ -60,6 +60,11 @@ public class MemberController {
 		//System.out.println("Login : "+memberDTO);
 		
 		return "redirect:../";
+	}
+	
+	@GetMapping("agreement")
+	public void setAgreement() throws Exception{
+		
 	}
 	
 	//logout
