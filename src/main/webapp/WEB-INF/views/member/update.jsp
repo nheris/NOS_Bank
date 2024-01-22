@@ -33,10 +33,6 @@
 							  <input type="text" disabled value="${member.userName}" class="form-control"  name="userName" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
 							</div>
 							
-	                       <div class="input-group mb-3">
-							  <span class="input-group-text" id="basic-addon2">PW</span>
-							  <input type="password" value="${member.password}" class="form-control" name="password" placeholder="Password" aria-label="Password" aria-describedby="basic-addon2">
-							</div>
 							
 							<div class="input-group mb-3">
 							  <span class="input-group-text" id="basic-addon3">이름</span>

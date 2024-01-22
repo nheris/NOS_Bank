@@ -21,6 +21,36 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 	
+	<beans:bean class="com.winter.app.interceptors.TestInterceptors" id="TestInterceptors"></beans:bean>
+	
+	<interceptors>
+		<interceptor>
+			<!-- 언제(어떤 url때) 생성할거냐 -->
+			<mapping path="/**"/>
+			<!-- <beans:bean class="com.winter.app.interceptors.TestInterceptors" id="TestInterceptors"></beans:bean> -->
+			<!-- 제외 -->
+			<exclude-mapping path="/notice/*"/>
+
+			<beans:ref bean="TestInterceptors"></beans:ref>			
+		</interceptor>
+		
+		<interceptor>
+			<mapping path="/qna/*"/>
+			<mapping path="/member/mypage"/>
+			<mapping path="/member/update"/>
+			<mapping path="/member/delete"/>
+			<exclude-mapping path="/qna/list"/>
+			<beans:ref bean="authenticationInterCeptor"/>
+		</interceptor>
+		
+		<interceptor>
+			<mapping path="/qna/update"/>
+			<mapping path="/notice/update"/>
+			<beans:ref bean="writerCheck"/>
+		</interceptor>
+	</interceptors>
+	
+	
 	<context:component-scan base-package="com.winter.app" />
 	
 	

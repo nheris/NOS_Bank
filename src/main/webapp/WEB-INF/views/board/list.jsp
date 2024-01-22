@@ -135,10 +135,12 @@
 							</nav>
                         </div>
                         
-                        
+                        <!-- 회원만 보이게 but /qna/add 주소치면 다들어감 보안안됨 -->
+                        <c:if test="${not empty member}">
                         <div>
                         	<a href="./add" class="btn btn-danger">글쓰기</a>
                         </div>
+                        </c:if>
                 	</div>
                	</div>
 			</section>

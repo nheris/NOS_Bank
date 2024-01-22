@@ -98,7 +98,7 @@ public class MemberController {
 		MemberDTO m = (MemberDTO)session.getAttribute("member");
 		memberDTO.setUserName(m.getUserName());
 		
-		//새정보 바로뜨게
+		//수정후 새정보 바로뜨게
 		session.setAttribute("member", memberDTO);
 		int result = memberService.setUpdate(memberDTO);
 		

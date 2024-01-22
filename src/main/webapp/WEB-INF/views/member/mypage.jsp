@@ -71,6 +71,8 @@
 						<br>						
                         <div>
                           <a class="btn btn-primary" href="./update">수정</a>
+                          <a class="btn btn-primary" href="./updatePassword">비밀번호 수정</a>
+                          <a class="btn btn-primary" href="./delete">탈퇴</a>
                         </div>
                                        
 
