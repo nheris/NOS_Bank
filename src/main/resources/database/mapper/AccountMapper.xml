@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<!-- namespace 비우면 에러 -->
+<mapper namespace="com.winter.app.account.AccountDAO">
+	<insert id="add" parameterType="AccountDTO">
+		INSERT INTO ACCOUNT
+		VALUES (#{accountNum} ,#{userName}, #{productNum}, #{accountPW}, SYSDATE , 0)
+	
+	</insert>
+
+
+
+	<select id="list" resultMap="listResult" parameterType="MemberDTO">
+		SELECT * 
+		FROM PRODUCT
+			 LEFT JOIN
+			 ACCOUNT
+			 USING (PRODUCTNUM)
+		WHERE USERNAME = #{userName}
+	</select>
+	<resultMap type="ProductDTO" id="listResult">
+		<id column="PRODUCTNUM" property="productNum"/>
+		<result column="PRODUCTNAME" property="productName"/>
+		<result column="PRODUCTCONTENTS" property="productContents"/>
+		<result column="PRODUCTRATE" property="productRate"/>
+		<result column="PRODUCTJUMSU" property="productJumsu"/>
+		<result column="PRODUCTCOUNT" property="productCount"/>
+		<result column="PRODUCTSALE" property="productSale"/>
+		<collection property="accountDTOs" javaType="List" ofType="AccountDTO">
+			<id column="ACCOUNTNUM" property="accountNum"/>
+			<result column="USERNAME" property="userName"/>
+			<result column="PRODUCTNUM" property="productNum"/>
+			<result column="ACCOUNTPW" property="accountPW"/>
+			<result column="ACCOUNTDATE" property="accountDate"/>
+			<result column="ACCOUNTBALANCE" property="accountBalance"/>
+		</collection>
+	
+	
+	</resultMap>
+
+
+
+</mapper>

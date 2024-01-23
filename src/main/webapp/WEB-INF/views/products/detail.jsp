@@ -57,6 +57,9 @@
                             
 							<c:if test="${not empty dto}">
 							<div>
+								
+								<a id="add" class="btn btn-primary" href="/account/add?productNum=${dto.productNum}">상품가입</a>
+								
                                 <a id="update" class="btn btn-success" href="#">Update</a>
                                 <a id="delete" class="btn btn-danger" href="#">Delete</a>
 

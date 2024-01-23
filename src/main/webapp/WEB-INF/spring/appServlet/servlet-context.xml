@@ -40,7 +40,10 @@
 			<mapping path="/member/mypage"/>
 			<mapping path="/member/update"/>
 			<mapping path="/member/delete"/>
+			
+			<mapping path="/products/*"/>
 			<exclude-mapping path="/qna/list"/>
+			<exclude-mapping path="/products/list"/>
 			<beans:ref bean="authenticationInterCeptor"/>
 		</interceptor>
 		

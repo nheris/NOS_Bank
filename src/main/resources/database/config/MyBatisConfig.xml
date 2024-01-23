@@ -16,6 +16,8 @@
   		
   		<typeAlias type="com.winter.app.member.AvatarDTO" alias="AvatarDTO"/>
   		<typeAlias type="com.winter.app.member.MemberDTO" alias="MemberDTO"/>
+
+  		<typeAlias type="com.winter.app.account.AccountDTO" alias="AccountDTO"/>
   	</typeAliases>
   
   </configuration>

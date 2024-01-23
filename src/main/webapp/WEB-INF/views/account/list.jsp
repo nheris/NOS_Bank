@@ -20,12 +20,12 @@
             <c:import url="../temps/header.jsp"></c:import>
 			<div class="container px-5 my-5">
                	<div class="text-center mb-5">
-               	 	<h1 class="display-5 fw-bolder mb-0"><span class="text-gradient d-inline">Product List</span></h1>
+               	 	<h1 class="display-5 fw-bolder mb-0"><span class="text-gradient d-inline">My자산 List</span></h1>
                 </div>
 				
 				
 				<!-- 서치 -->
-				<div>
+<!-- 				<div>
 					<form class="row g-3" action="./list">
 					  <div class="col-auto">
 						  <select name="kind" class="form-select" aria-label="Default select example">
@@ -42,34 +42,30 @@
 					    <button type="submit" class="btn btn-primary mb-3">검색</button>
 					  </div>
 					</form>
-				</div>
+				</div> -->
 				
-				<!-- 테이 -->
+				<!-- 테이블 -->
 				<table class="table table-hover">
 					<thead>
 						<tr>
-							<th>상품번호</th>
 							<th>상품명</th>
-							<th>상품설명</th>
+							<th>계좌번호</th>
+							<th>잔액</th>
+							<th>가입일</th>
 							<th>이자율</th>
-							<th>평점</th>
-							<th>누적판매량</th>
-							<th>판매유무</th>
 						</tr>
 					</thead>
 					<tbody>
-						<c:forEach items="${list}" var="dto" >
+						<c:forEach items="${list}" var="dto" varStatus="status">
+							
 							<tr>
-								<td>${dto.productNum}</td>
-								<td>
-									<a href="./detail?productNum=${dto.productNum}">${dto.productName}</a>
-								</td>
-								<td>${dto.productContents}</td>
+								<td>${dto[status.ind].productName}</td>
+								<td>${.accountNum}</td>
+								<td>${.accountBalance}</td>
+								<td>${.accountDate}</td>
 								<td>${dto.productRate}</td>
-								<td>${dto.productJumsu}</td>
-								<td>${dto.productCount}</td>
-								<td>${dto.productSale}</td>
 							</tr>
+							</c:forEach>
 						</c:forEach>
 					</tbody>
 				</table>
@@ -101,11 +97,6 @@
 				  </ul>
 				</nav>
 				
-				<c:if test="${not empty member}">
-				<div>
-					<a href="./add" class="btn btn-danger">상품등록</a>
-				</div>
-				</c:if>
 				
 			</div>
 			
