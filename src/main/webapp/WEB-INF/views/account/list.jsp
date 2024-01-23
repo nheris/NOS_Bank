@@ -56,17 +56,29 @@
 						</tr>
 					</thead>
 					<tbody>
-						<c:forEach items="${list}" var="dto" varStatus="status">
+						<%-- <c:forEach items="${list}" var="dto" varStatus="status">
 							
 							<tr>
-								<td>${dto[status.ind].productName}</td>
-								<td>${.accountNum}</td>
-								<td>${.accountBalance}</td>
-								<td>${.accountDate}</td>
+								<td>${dto.productName}</td>
+								<td>${dto.accountDTOs[status.index].accountNum}</td>
+								<td>${dto.accountDTOs[status.index].accountBalance}</td>
+								<td>${dto.accountDTOs[status.index].accountDate}</td>
 								<td>${dto.productRate}</td>
+							</tr>
+							
+						</c:forEach> --%>
+						<c:forEach items="${list}" var="list">
+							<c:forEach items="${list.accountDTOs}" var="dto">
+							<tr>
+								<td>${list.productName}</td>
+								<td>${dto.accountNum}</td>
+								<td>${dto.accountBalance}</td>
+								<td>${dto.accountDate}</td>
+								<td>${list.productRate}</td>
 							</tr>
 							</c:forEach>
 						</c:forEach>
+						
 					</tbody>
 				</table>
 				
