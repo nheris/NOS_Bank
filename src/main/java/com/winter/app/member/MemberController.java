@@ -115,16 +115,15 @@ public class MemberController {
 	
 	//id 중복검사
 	@GetMapping("idCheck")
-	public String getIdCheck(MemberDTO memberDTO, Model model) throws Exception{
+	public String getIdCheck(MemberDTO memberDTO, Model model)throws Exception{
 		memberDTO = memberService.getDetail(memberDTO);
-		
+
 		int result=0;
 		if(memberDTO == null) {
-			result=1;
+			result=1; //중복x
 		}
 		model.addAttribute("result", result);
-		
-		return "commons/ajaxResult";
-		
+
+		return "commons/ajaxResult"; //태그까지 다들고오니 다지움
 	}
 }

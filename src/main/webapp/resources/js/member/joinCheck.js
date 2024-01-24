@@ -1,7 +1,8 @@
 console.log("join check");
 
+	//비번체크 
 
-///js
+//------------------js
 // const password = document.getElementById("password");
 // const passwordResult = document.getElementById("passwordResult");
 // const passwordCheck = document.getElementById("passwordCheck");
@@ -43,9 +44,9 @@ console.log("join check");
 
 // });
 
-        //아이디 중복검사
+        
 
-/// jquery
+//------------------jquery
 let checks ={p1:false, p2:false}
 
 $('#btn').click(function(){
@@ -95,12 +96,14 @@ $('#passwordCheck').keyup(function(){
 
 });
 
-        //아이디 중복검사
-    $("#userName").blur(function(){
-        fetch("./idCheck?userName="+$("#userName").val() , {
-            method:"GET",
-            //body:"userName="+$("#userName").val() 안됨
-        })
-        .then(response=>response.text())
-        .then(res=>console.log(res.trim()))
-    });
+//===============아이디 중복검사
+        
+   $("#userName").blur(function(){
+       fetch("./idCheck?userName="+$("#userName").val() , {
+           method:"GET",
+           //body:"userName="+$("#userName").val() 안됨
+       })
+       .then(response=>response.text())
+       .then(res=>console.log(res.trim()))
+   });
+    

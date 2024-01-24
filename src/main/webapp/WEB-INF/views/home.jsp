@@ -37,7 +37,7 @@
 
                                     <div id="result">
                                         <input type="text" id="title">
-                                        <textarea name="" id="contents" cols="30" rows="10"></textarea>
+                                        <textarea id="contents"></textarea>
                                         <button id="btn2">공지사항 추가</button>
                                     </div>
                                     </c:if>

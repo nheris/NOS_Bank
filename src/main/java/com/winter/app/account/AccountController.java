@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.winter.app.member.MemberDTO;
 import com.winter.app.product.ProductDTO;
+import com.winter.app.util.Pager;
 
 @Controller
 @RequestMapping("/account/*")
@@ -41,10 +42,10 @@ public class AccountController {
 	}
 	
 	@GetMapping("list")
-	public void list(HttpSession session, Model model) throws Exception{
+	public void list(HttpSession session, Model model, Pager pager) throws Exception{
 		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
 		
-		List<ProductDTO> ar = accountService.list(memberDTO);
+		List<Object> ar = accountService.list(pager, memberDTO);
 		
 		model.addAttribute("list", ar);
 		

@@ -12,14 +12,18 @@
 	</insert>
 
 
-
-	<select id="list" resultMap="listResult" parameterType="MemberDTO">
+					<!--pager에 userName넣거나  파라미터 두개필요하니 Map-->
+	<select id="list" resultMap="listResult" parameterType="Map">
 		SELECT * 
-			  FROM PRODUCT
-			  LEFT JOIN
-			  ACCOUNT
-			  USING (PRODUCTNUM)
-			  WHERE USERNAME = #{userName}
+		FROM ( SELECT ROWNUM R, PA.* 
+			   FROM ( SELECT * 
+	  				  FROM PRODUCT
+	  				  	   LEFT JOIN 
+	  				  	   ACCOUNT
+	  			 	  	   USING (PRODUCTNUM) 
+	  			      WHERE USERNAME=#{memberDTO.userName}) PA
+			  )
+  		<!-- WHERE R BETWEEM #{pager.startRow} AND #{pager.lastRow} -->
 		
 	</select>
 	<resultMap type="ProductDTO" id="listResult">

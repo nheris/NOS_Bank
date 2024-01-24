@@ -34,12 +34,12 @@
            		    	<form action="./login" method="post">
                       		<div class="input-group mb-3">
 							  <span class="input-group-text" id="basic-addon1">&nbsp ID &nbsp</span>
-							  <input type="text" class="form-control"  name="userName" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
+							  <input type="text" class="form-control" value="gildong2" name="userName" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
 							</div>
 							
 	                       <div class="input-group mb-3">
 							  <span class="input-group-text" id="basic-addon2">PW</span>
-							  <input type="password" class="form-control" name="password" placeholder="Password" aria-label="Password" aria-describedby="basic-addon2">
+							  <input type="password" class="form-control" value="gilgil" name="password" placeholder="Password" aria-label="Password" aria-describedby="basic-addon2">
 							</div>
 							
 

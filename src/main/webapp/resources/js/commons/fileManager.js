@@ -5,43 +5,81 @@ console.log("FileManager");
         <span class="input-group-text text-danger">X</span>
     </div> */}
 
+let count=0; //현재 count
+let max=5;   //최대 갯수
+
+//-------------------------js
+
 // const filelist = document.getElementById("filelist");
 // const fileAdd = document.getElementById("fileAdd");
+// const del = document.getElementsByClassName("del");
 
-// let num = 0;
+// filelist.addEventListener("click", (e)=>{
+//     //console.log(e) //이벤트 자체 
+//     //console.log(e.target) //자식안에 실제 누른애들, 엘리먼트자체 전체 들고옴
+//  	//console.log(e.target.classList.contains('del'))
+//     if(e.target.classList.contains('del')){
 
-// fileAdd.addEventListener("click",()=>{
-//     num++;
+//         //e.target.parentNode.remove();
+//         let id = e.target.getAttribute("data-file-id");
+//         document.getElementById(id).remove();
+//         count--;
+//     }
+// })
 
-//     console.log("aaaaaa");
 
-//     let div = document.createElement("div");
-//     let dc = document.createAttribute("class");
-//     dc.value="input-group my-3";
-//     div.setAttribute(dc);
-//     filelist.setAttribute(div);
+// let idx=0;
 
-//     let input = document.createElement("input");
-//     let ic = document.createAttribute("class");
-//     ic.value="form-control";
-//     let it = document.createAttribute("type");
-//     it.value="file";
-//     let name = document.createAttribute("name");
-//     name.value="attachs";
-//     input.setAttribute(ic);
-//     input.setAttribute(it);
-//     input.setAttribute(name);
-//     div.appendChild(input);
+// fileAdd.addEventListener("click", ()=>{
+//     if(count>=max){
+//         alert('파일은 최대 5개 까지 가능');
+//         return;
+//     }
+//     count++;
+//     idx++;
+//     let div = document.createElement("div"); //<div></div>
+//     let ac = document.createAttribute("class"); //class=
+//     ac.value="input-group my-3";                     //class="input-group"
+//     div.setAttributeNode(ac);                   // <div class="input-group"></div>
 
-//     let span = document.createElement("span");
-//     let spanAttr = document.createAttribute("class");
-//     spanAttr.value="input-group-text text-danger del";
-//     span.setAttribute(spanAttr);
+//     //id추가
+//     ac = document.createAttribute("id");
+//     ac.value="file"+idx;
 
-//     let x = document.createTextNode("X");
+//     div.setAttributeNode(ac);
 
-//     div.appendChild(span);
-//     span.appendChild(x);
+//     let child = document.createElement("input"); //<input>
+
+//     ac = document.createAttribute("class");
+//     ac.value="form-control";
+//     child.setAttributeNode(ac);
+
+//     ac = document.createAttribute("type")
+//     ac.value="file";
+//     child.setAttributeNode(ac);
+
+//     ac = document.createAttribute("name")
+//     ac.value="attachs";
+//     child.setAttributeNode(ac);
+
+//     div.appendChild(child);
+
+//     child=document.createElement("span");
+//     ac = document.createAttribute("class")
+//     ac.value="input-group-text text-danger del";
+//     child.setAttributeNode(ac);
+
+//     ac = document.createTextNode("X");
+//     child.appendChild(ac);
+
+//     ac = document.createAttribute("data-file-id")
+//     ac.value="file"+idx;
+
+//     child.setAttributeNode(ac);
+
+//     div.appendChild(child);
+
+//     filelist.appendChild(div);
 
 
 // })
@@ -49,31 +87,34 @@ console.log("FileManager");
 
 //-------------------------jquery
 
-let num = 0;
-
+let ctncheck = 0;
+max = $("#filelist").attr('.data-file-max');
+console.log(max);
 $("#fileAdd").click(()=>{
-    // let element = '<div class="input-group my-2">';
-    // element= element+ '<input class="form-control" type="file" name="attachs"></input>';
-    // element= element+ '<span class="input-group-text text-danger del">X</span>';
-    // element= element+ '</div>';
 
-    num++;
-    if(num>5){
-        alert('5개까지만 추가가능');
-        return false;
-    };
-
-    let element = 
-    `<div class="input-group">
-        <input class="form-control" type="file" name="attachs">
-        <span class="input-group-text text-danger">X</span>
+//     // let element = '<div class="input-group">';
+//     // element+= '<input class="form-control" type="file" name="attachs">';
+//     // element+='<span class="input-group-text text-danger" >X</span>';
+//     // element+='</div>';
+//     // $("#filelist").append(element);
+    ctncheck++;
+    if(ctncheck>=6){
+        alert("최대 5개임");
+        $(element).remove();
+    }
+    let element =`<div class="input-group">
+    <input class="form-control" type="file" name="attachs">
+    <span class="input-group-text text-danger del" >X</span>
     </div>`
-
-    //`<-엔터도 포함?`
+    //`<-엔터도 포함?
 
     $("#filelist").append(element);
-})
+});
 
-$(".del").click(()=>{
-    alert("Del Click");
-})
+
+//$('.del').click()
+$('.del').on("click", function(){
+    alert("del");
+});
+
+
