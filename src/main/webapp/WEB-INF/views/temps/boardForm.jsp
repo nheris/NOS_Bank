@@ -22,12 +22,13 @@
                             <textarea class="form-control" id="contents" rows="3" name="boardContents">${boardDTO.boardContents}</textarea>
                           </div>
 
-                          <div class="mb-3">
-                             <input class="form-control" type="file" name="attachs">
-                             <input class="form-control" type="file" name="attachs">
-                             <input class="form-control" type="file" name="attachs" multiple accept="image/*" >   
+                          <div class="mb-3" id="filelist" data-file-count="0" data-file-max="5">
+                              <button type="button" id="del">DEL</button>
+                              <button type="button" id="fileAdd">파일추가</button>
                           </div>
-
+                            
+                            <!-- <input class="form-control" type="file" name="attachs">
+                            <input class="form-control" type="file" name="attachs" multiple accept="image/*" >    -->
                           <div class="mb-3">
                             <button class="btn btn-primary">등록</button>
                           </div>

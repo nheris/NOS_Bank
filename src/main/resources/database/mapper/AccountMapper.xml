@@ -15,11 +15,12 @@
 
 	<select id="list" resultMap="listResult" parameterType="MemberDTO">
 		SELECT * 
-		FROM PRODUCT
-			 LEFT JOIN
-			 ACCOUNT
-			 USING (PRODUCTNUM)
-		WHERE USERNAME = #{userName}
+			  FROM PRODUCT
+			  LEFT JOIN
+			  ACCOUNT
+			  USING (PRODUCTNUM)
+			  WHERE USERNAME = #{userName}
+		
 	</select>
 	<resultMap type="ProductDTO" id="listResult">
 		<id column="PRODUCTNUM" property="productNum"/>

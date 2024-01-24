@@ -30,10 +30,17 @@
                                 <div class="d-grid gap-3 d-sm-flex justify-content-sm-center justify-content-xxl-start mb-3">
 
 
-                                	<c:if test="${empty sessionScope.member}">
+                                	<c:if test="${ not empty sessionScope.member}">
                                     <a id="b1" class="btn btn-primary btn-lg px-5 py-3 me-sm-3 fs-6 fw-bolder" href="resume.html">Resume</a>
                                     <a id="b2" class="btn btn-outline-dark btn-lg px-5 py-3 fs-6 fw-bolder" href="projects.html">Projects</a>
-                                	</c:if>
+                                	<button id="btn">NOTICELIST</button>
+
+                                    <div id="result">
+                                        <input type="text" id="title">
+                                        <textarea name="" id="contents" cols="30" rows="10"></textarea>
+                                        <button id="btn2">공지사항 추가</button>
+                                    </div>
+                                    </c:if>
 
 
                                 </div>
@@ -186,5 +193,7 @@
         </main>
         <!-- Footer-->
 		<c:import url="./temps/footer.jsp"></c:import>
+
+        <script src="/resources/js/basic.js"></script>
     </body>
 </html>
