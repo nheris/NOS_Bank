@@ -1,5 +1,8 @@
 package com.winter.app.wishlist;
 
+import java.util.List;
+import java.util.Map;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -18,8 +21,12 @@ public class WishlistDAO {
 		return sqlSession.insert(NAMESPACE+"add", accountDTO);
 	}
 
-	public Object list(MemberDTO memberDTO) {
+	public List<ProductDTO> list(MemberDTO memberDTO) throws Exception {
 		return sqlSession.selectList(NAMESPACE+"list", memberDTO);
+	}
+
+	public int delete(Map<String, Object> map) throws Exception{
+		return sqlSession.delete(NAMESPACE+"delete", map);
 	}
 	
 }

@@ -8,9 +8,10 @@ const req = document.getElementsByClassName("req");
 
 checkAll.addEventListener("click", ()=>{
     let v = checkAll.getAttribute("checked");
-    console.log("CHECK : ", v);
-    v = checkAll.checked;
-
+    console.log("CHECK : ", v); //null
+    v = checkAll.checked; 
+    console.log("CHECK : ", v); //true,false
+    
     for(let check of checks){
         check.checked=v;
     }

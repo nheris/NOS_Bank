@@ -1,15 +1,19 @@
 package com.winter.app.wishlist;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.winter.app.account.AccountDTO;
 import com.winter.app.member.MemberDTO;
+import com.winter.app.product.ProductDTO;
 import com.winter.app.util.Pager;
 
 @Controller
@@ -30,7 +34,18 @@ public class WishlistController {
 	@GetMapping("list")
 	public void list(HttpSession session, Model model) throws Exception{
 		MemberDTO memberDTO = (MemberDTO) session.getAttribute("member");
-		wishlistService.list(memberDTO);
+		List<ProductDTO> ar = wishlistService.list(memberDTO);
+		model.addAttribute("list", ar);
 	}
 	
+	@PostMapping("delete")
+	public String delete(Long [] productNum, HttpSession session, Model model) throws Exception{
+		MemberDTO memberDTO = (MemberDTO) session.getAttribute("member");
+		int result = wishlistService.delete(productNum, memberDTO);
+		List<ProductDTO> ar = wishlistService.list(memberDTO);
+		
+		model.addAttribute("result", result);
+		
+		return "commons/ajaxResult";
+	}
 }

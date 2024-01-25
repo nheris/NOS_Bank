@@ -43,6 +43,10 @@
 					</div>
 				</form> --%>
 				
+				<div>
+					<button id="del">삭제</button>
+				</div>
+			
 				<!-- 테이블 -->
 				<table class="table table-hover">
 					<thead>
@@ -56,8 +60,8 @@
 							  	</div>
 							</th>
 							<th>No</th>
-							<th>Product Name</th>
-							<th>Rate</th>
+							<th>상품명</th>
+							<th>이자율</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -65,11 +69,11 @@
 							<tr>
 								<td>
 									<div class="form-check">
-										<input class="form-check-input checks" type="checkbox" value="" >
+										<input class="form-check-input checks" type="checkbox" value="${dto.productNum}" >
 									</div>
 								</td>
 								<td>${dto.productNum}</td>
-								<td><a href="../product/detail?productNum=${dto.productNum}">${dto.productName}</a></td>
+								<td><a href="../products/detail?productNum=${dto.productNum}">${dto.productName}</a></td>
 								<td>${dto.productRate}</td>
 	
 							</tr>
@@ -122,6 +126,6 @@
         <!-- Footer-->
         <!-- 사용전 경로를 꼭 수정하세요/ -->
 		<c:import url="../temps/footer.jsp"></c:import>
-		<script src="/resources/js/whislist.js"></script>
+		<script src="/resources/js/wish/whislist.js"></script>
     </body>
 </html>

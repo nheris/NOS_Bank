@@ -1,5 +1,9 @@
 package com.winter.app.wishlist;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,8 +20,17 @@ public class WishlistService {
 		return wishlistDAO.add(accountDTO);
 	}
 
-	public void list(MemberDTO memberDTO) {
+	public List<ProductDTO> list(MemberDTO memberDTO) throws Exception {
 		return wishlistDAO.list(memberDTO);
+	}
+
+	public int delete(Long[] productNum, MemberDTO memberDTO) throws Exception{
+		Map<String, Object> map =new HashMap<String, Object>();
+		map.put("member", memberDTO);
+		map.put("nums",productNum);
+		
+		
+		return wishlistDAO.delete(map);
 	}
 	
 	

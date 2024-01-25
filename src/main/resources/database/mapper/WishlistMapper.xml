@@ -12,11 +12,27 @@
 	</insert>
 
 	<!-- list -->
-	<select id="list" parameterType="MemberDTO">
-		SELECT 
-		FROM 
+	<select id="list" parameterType="MemberDTO" resultType="ProductDTO">
+		SELECT PRODUCTNUM, PRODUCTNAME, PRODUCTRATE
+		FROM PRODUCT
+		WHERE PRODUCTNUM IN (
+			SELECT PRODUCTNUM
+			FROM WISHLIST
+			WHERE USERNAME =#{userName}
+		)
 	</select>
 
 	
 	<!-- delete -->
+	<delete id="delete" parameterType="Map">
+		DELETE WISHLIST
+		WHERE <!-- PRDUCTNUM IN (2,3,5) -->
+		PRODUCTNUM IN
+		<!-- Mybatis. collection="List, Array 는되지만 Map은안됨 ->map 키적기" /c:forEach 랑 같음. collection = items, item = var  -->
+		<foreach collection="nums" item="n" open="(" separator="," close=")">
+			#{n}
+		</foreach>
+		AND USERNAME=#{member.userName}
+		
+	</delete>
 </mapper>
