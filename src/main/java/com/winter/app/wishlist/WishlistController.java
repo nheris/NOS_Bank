@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.winter.app.account.AccountDTO;
 import com.winter.app.member.MemberDTO;
+import com.winter.app.util.Pager;
 
 @Controller
 @RequestMapping("/wishlist/*")
@@ -26,6 +27,10 @@ public class WishlistController {
 		return "commons/ajaxResult";
 	}
 	
-//	@GetMapping("list")
+	@GetMapping("list")
+	public void list(HttpSession session, Model model) throws Exception{
+		MemberDTO memberDTO = (MemberDTO) session.getAttribute("member");
+		wishlistService.list(memberDTO);
+	}
 	
 }

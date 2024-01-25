@@ -13,8 +13,10 @@
 
 	<!-- list -->
 	<select id="list" parameterType="MemberDTO">
-	
+		SELECT 
+		FROM 
 	</select>
 
-
+	
+	<!-- delete -->
 </mapper>
