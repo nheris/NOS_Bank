@@ -20,70 +20,73 @@
             <c:import url="../temps/header.jsp"></c:import>
 			<div class="container px-5 my-5">
                	<div class="text-center mb-5">
-               	 	<h1 class="display-5 fw-bolder mb-0"><span class="text-gradient d-inline">My자산</span></h1>
+               	 	<h1 class="display-5 fw-bolder mb-0"><span class="text-gradient d-inline">Wish List</span></h1>
                 </div>
 				
 				
 				<!-- 서치 -->
-<!-- 				<div>
-					<form class="row g-3" action="./list">
-					  <div class="col-auto">
-						  <select name="kind" class="form-select" aria-label="Default select example">
-							  <option class="a" value="kind1">상품명</option>
-							  <option class="a" value="kind2">상품설명</option>
+				<%-- <form class="col row g-3 mb-3">
+					<div class="col-auto">
+						<select class="form-select" name="kind">
+							<option value="kind1">이름</option>
+							<option value="kind2">내용</option>
+							<option value="kind3">이름&내용</option>
 						</select>
-					  </div>		
-					
-					  <div class="col-auto">
-					    <label for="search" class="visually-hidden">Search</label>
-					    <input type="text" name="search" class="form-control" id="search">
-					  </div>
-					  <div class="col-auto">
-					    <button type="submit" class="btn btn-primary mb-3">검색</button>
-					  </div>
-					</form>
-				</div> -->
-				
+					</div>
+					<div class="col-auto">
+						<label for="search" class="visually-hidden">Search</label> <input
+							type="text" name="search" class="form-control" id="search"
+							value="${pager.search}">
+					</div>
+					<div class="col-auto">
+						<button type="submit" class="btn btn-light">Search</button>
+					</div>
+				</form> --%>
 				
 				<!-- 테이블 -->
 				<table class="table table-hover">
 					<thead>
-						<tr>
-							<th>상품명</th>
-							<th>계좌번호</th>
-							<th>잔액</th>
-							<th>가입일</th>
-							<th>이자율</th>
+						<tr class="table-dark">
+							<th>
+								<div class="form-check">
+									<input class="form-check-input" type="checkbox" value="" id="checkAll">
+									<label class="form-check-label" for="checkAll">
+										전체선택
+									</label>
+							  	</div>
+							</th>
+							<th>No</th>
+							<th>Product Name</th>
+							<th>Rate</th>
 						</tr>
 					</thead>
 					<tbody>
-						<%-- <c:forEach items="${list}" var="dto" varStatus="status">
-							
+						<c:forEach items="${list}" var="dto">
 							<tr>
-								<td>${dto.productName}</td>
-								<td>${dto.accountDTOs[status.index].accountNum}</td>
-								<td>${dto.accountDTOs[status.index].accountBalance}</td>
-								<td>${dto.accountDTOs[status.index].accountDate}</td>
+								<td>
+									<div class="form-check">
+										<input class="form-check-input checks" type="checkbox" value="" >
+									</div>
+								</td>
+								<td>${dto.productNum}</td>
+								<td><a href="../product/detail?productNum=${dto.productNum}">${dto.productName}</a></td>
 								<td>${dto.productRate}</td>
+	
 							</tr>
-							
-						</c:forEach> --%>
-						<c:forEach items="${list}" var="list">
-							<c:forEach items="${list.accountDTOs}" var="dto">
-							<tr>
-								<td>${list.productName}</td>
-								<td>${dto.accountNum}</td>
-								<td>${dto.accountBalance}</td>
-								<td>${dto.accountDate}</td>
-								<td>${list.productRate}</td>
-							</tr>
-							</c:forEach>
 						</c:forEach>
-						
+						<%-- <c:if test="${list.size() != 10}">
+								<c:forEach begin="1" end="${11-list.size()}">
+									<tr>
+										<td style="color : white" disable>빈셀</td>
+										<td></td>
+										<td></td>
+										<td></td>
+									</tr>
+								</c:forEach>
+							</c:if> --%>
 					</tbody>
 				</table>
 				
-			    
 				<!-- 페이징 -->
 				<nav aria-label="Page navigation example">
 				  <ul class="pagination">
@@ -108,12 +111,9 @@
 				    </li>
 				    </c:if>
 				    
-				    
-					<a class="btn btn-dark" href="/wishlist/list">♥</a>
-				    
 				  </ul>
 				</nav>
-				
+
 				
 			</div>
 			
@@ -122,5 +122,6 @@
         <!-- Footer-->
         <!-- 사용전 경로를 꼭 수정하세요/ -->
 		<c:import url="../temps/footer.jsp"></c:import>
+		<script src="/resources/js/whislist.js"></script>
     </body>
 </html>

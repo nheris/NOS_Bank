@@ -62,9 +62,12 @@
 								
                                 <a id="update" class="btn btn-success" href="#">Update</a>
                                 <a id="delete" class="btn btn-danger" href="#">Delete</a>
+                                
+                                <a id="wishlist" class="btn btn-dark" href="#">♥</a>
+                                
 
                                 <form id="frm" action="./update" method="get">
-                                    <input type="hidden" name="productNum" value="${dto.productNum}">
+                                    <input type="hidden" name="productNum" id="productNum" value="${dto.productNum}">
                                 </form>
 							</div>
                             </c:if>

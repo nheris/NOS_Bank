@@ -99,11 +99,35 @@ $('#passwordCheck').keyup(function(){
 //===============아이디 중복검사
         
    $("#userName").blur(function(){
-       fetch("./idCheck?userName="+$("#userName").val() , {
-           method:"GET",
-           //body:"userName="+$("#userName").val() 안됨
-       })
-       .then(response=>response.text())
-       .then(res=>console.log(res.trim()))
+    //방법1
+    //    fetch("./idCheck?userName="+$("#userName").val() , {
+    //        method:"GET",
+    //        //body:"userName="+$("#userName").val() 안됨
+    //    })
+    //    .then(response=>response.text())
+    //    .then(res=>console.log(res.trim()))
+
+    //2
+    // $.get("./idCheck?userName="+$("#userName").val(), function(res){
+    //     console.log(res);
+    // })
+
+    //3.에러처리때문에 굳이 쓴다면 이거
+    let userName = $("#userName").val();
+    $.ajax({
+        url:"./idCheck",
+        method:"GET",
+        data:{ //파라미터
+            userName:userName
+        },
+        success:function(r){
+            console.log(r)
+        },
+        error:function(){
+            alert("아이디 검증 실패")
+        }
+    });
+
+
    });
     
