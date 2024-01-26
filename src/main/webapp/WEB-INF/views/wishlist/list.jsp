@@ -45,6 +45,7 @@
 				
 				<div>
 					<button id="del">삭제</button>
+					<button id="add">가입</button>
 				</div>
 			
 				<!-- 테이블 -->
@@ -64,21 +65,23 @@
 							<th>이자율</th>
 						</tr>
 					</thead>
-					<tbody>
-						<c:forEach items="${list}" var="dto">
-							<tr>
-								<td>
-									<div class="form-check">
-										<input class="form-check-input checks" type="checkbox" value="${dto.productNum}" >
-									</div>
-								</td>
-								<td>${dto.productNum}</td>
-								<td><a href="../products/detail?productNum=${dto.productNum}">${dto.productName}</a></td>
-								<td>${dto.productRate}</td>
-	
-							</tr>
-						</c:forEach>
-						<%-- <c:if test="${list.size() != 10}">
+					<tbody id="ajaxList">
+						<form id="deleteForm">
+
+							<c:forEach items="${list}" var="dto">
+								<tr>
+									<td>
+										<div class="form-check">
+											<input class="form-check-input checks" type="checkbox" name="productNum" value="${dto.productNum}" >
+										</div>
+									</td>
+									<td>${dto.productNum}</td>
+									<td><a href="../products/detail?productNum=${dto.productNum}">${dto.productName}</a></td>
+									<td>${dto.productRate}</td>
+									
+								</tr>
+							</c:forEach>
+							<%-- <c:if test="${list.size() != 10}">
 								<c:forEach begin="1" end="${11-list.size()}">
 									<tr>
 										<td style="color : white" disable>빈셀</td>
@@ -87,6 +90,7 @@
 										<td></td>
 									</tr>
 								</c:forEach>
+							</form>
 							</c:if> --%>
 					</tbody>
 				</table>

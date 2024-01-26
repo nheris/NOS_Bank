@@ -38,3 +38,39 @@ wishlist.addEventListener("click",()=>{
         }
     })
 })
+
+//후기댓글 replyAdd (Fetch사용)
+const replyAdd = document.getElementById("replyAdd");
+const replyForm = document.getElementById("replyForm");
+
+let replyList = document.getElementById("replyList");
+
+replyAdd.addEventListener("click",()=>{
+    let form = new FormData(replyForm);
+    
+    fetch("../reply/add",{
+        method:"POST",
+        body:form
+    })
+
+    .then(res=>res.text())
+    .then(res=>{console.log(res)
+        
+        
+        replyList.innerHTML=res
+        //$("#replyList").html(res)
+        
+        //새댓추가하고 폼 값 초기화
+        replyForm.reset();
+
+    })
+
+
+})
+
+
+//후기댓글들 상품에 뜨게
+fetch("../reply/list?productNum="+update.getAttribute("data-product-num"), {
+	method:"GET"
+}).then(r=> r.text())
+  .then(r=>document.getElementById("replyList").innerHTML=r)

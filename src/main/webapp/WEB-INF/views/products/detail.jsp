@@ -60,7 +60,7 @@
 								
 								<a id="add" class="btn btn-primary" href="/account/add?productNum=${dto.productNum}">상품가입</a>
 								
-                                <a id="update" class="btn btn-success" href="#">Update</a>
+                                <a id="update" class="btn btn-success" data-product-num="${dto.productNum}" href="#">Update</a>
                                 <a id="delete" class="btn btn-danger" href="#">Delete</a>
                                 
                                 <a id="wishlist" class="btn btn-dark" href="#">♥</a>
@@ -74,6 +74,39 @@
 							
 
                         </div>
+
+                        <div class="my-3" id="replyList">
+
+
+                        </div>
+
+
+                        <div class="my-3">
+                            <form id="replyForm">
+                                    <input type="hidden" name="productNum" value="${dto.productNum}">
+
+
+                                    <div class="mb-3">
+                                        <textarea class="form-control" id="replyContents" rows="3" name="replyContents"></textarea>
+                                    </div>
+                                    <div class="mb-3">
+                                        <select class="form-select" name="replyJumsu" aria-label="Default select example">
+                                            <option value="5">★★★★★</option>
+                                            <option value="4">★★★★</option>
+                                            <option value="3">★★★</option>
+                                            <option value="2">★★</option>
+                                            <option value="1">★</option>
+                                        </select>
+                                    </div>
+
+                                    <div>
+                                        <button type="button" id="replyAdd" class="btn btn-primary">댓글달기</button>
+                                    </div>
+                            </form>
+
+                        </div>
+
+
                     </div>
                 </div>
             </section>

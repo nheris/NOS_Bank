@@ -44,8 +44,11 @@ public class WishlistController {
 		int result = wishlistService.delete(productNum, memberDTO);
 		List<ProductDTO> ar = wishlistService.list(memberDTO);
 		
-		model.addAttribute("result", result);
+		//model.addAttribute("result", result);
+		//다시 조회
+		model.addAttribute("list", ar);
 		
-		return "commons/ajaxResult";
+		//return "commons/ajaxResult";
+		return "wishlist/ajaxList";
 	}
 }
