@@ -60,8 +60,8 @@ replyAdd.addEventListener("click",()=>{
         replyList.innerHTML=res
         //$("#replyList").html(res)
         
-        //새댓추가하고 폼 값 초기화
-        replyForm.reset();
+        //새댓추가하고 입력한 폼 값 초기화
+        //replyForm.reset();
 
     })
 
@@ -74,3 +74,22 @@ fetch("../reply/list?productNum="+update.getAttribute("data-product-num"), {
 	method:"GET"
 }).then(r=> r.text())
   .then(r=>document.getElementById("replyList").innerHTML=r)
+  
+  
+  
+//후기댓 페이징
+ const more = document.getElementById("more")
+ //const replyList = document.getElementById("replyList");
+
+ replyList.addEventListener("click", (e)=>{
+
+	if(e.target.getAttribute("id")=='more'){
+		let p = e.target.getAttribute('data-replyList-page');
+		fetch("../reply/list?productNum="+update.getAttribute("data-product-num")+"&page="+(p*1+1), {
+			method:"GET"
+		}).then(r=> r.text())
+		  .then(r=>
+            document.getElementById("replyList").innerHTML=r)
+	}
+
+ })

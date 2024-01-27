@@ -70,9 +70,9 @@
 $("#add").click(()=>{
     $("#deleteForm").attr("action", "../account/add")
     $("#deleteForm").submit();
-})
+});
 
-
+  
 $("#del").click(function(){
 
     let nums = [];
@@ -82,18 +82,18 @@ $("#del").click(function(){
             nums.push($(item).val());
             checkElement.push(item);
         }
-        
-        //deleteWithJquery(nums)
-        deleteWithFectch(nums)
+    });    
+        deleteWithFetch(nums);
+        //deleteWithJquery(nums);
         
         console.log(nums);
 
-    });
+    
 
     
 });
 
-function deleteWithFectch(nums){
+function deleteWithFetch(nums){
     // let param = "";
     // nums.forEach(element => {
     //     param = param+"productNum="+element+"&";
@@ -101,20 +101,22 @@ function deleteWithFectch(nums){
 
     //폼자체 보낼거임
     let deleteForm = document.getElementById("deleteForm");
-    
+    console.log(deleteForm)
     let form = new FormData(deleteForm);//form 새로만들겟다?
 
     fetch("./delete",{
         method:"post",
-        // headers:{
-        //     "Content-type":"application/x-www-form-urlencoded"
-        // },
+        headers:{
+            "Content-type":"application/x-www-form-urlencoded"
+        },
+        body:"productNum="+nums
         //body:param
+       //body:form
     })
     .then(res=>res.text())
     .then(res=>{
         console.log(res);
-        $('#ajaxList').html(res.trim());
+        $('#ajaxList').html(res);
     })
 }
 
@@ -125,25 +127,26 @@ function deleteWithJquery(nums){
     $.ajax({
         method:"post",
         url:"./delete",
-        traditional:true,
+        
+        cache:false,
         contentType:false,
         processData:false,
-        data: form,
+        data:form,
         success:function(result){
-            if(result.trim()>0){
+            //if(result.trim()>0){
                 //1. location.reload();
     
                 //2. Element들 삭제
                 //    checkElement.forEach((element)=>{
                     //         $(element).parent().parent().parent().remove();
                     //    })
-                    //3. DB에서 조회를 다시 해서 html() ->innerHTML
-                    $('#ajaxList').html(res.trim());
-                }
-            },
-            error:function(){
-                alert('알수없는 에러 발생 관리자에 문의');
-            }
+            //}
+                //3. DB에서 조회를 다시 해서 html() ->innerHTML
+            $('#ajaxList').html(result.trim());
+        },
+        error:function(){
+            alert('알수없는 에러 발생 관리자에 문의');
+        }
     })
     
 }
@@ -155,7 +158,9 @@ $('#checkAll').click(()=>{
     $('.checks').prop("checked", v);
 });
 
-$('.checks').click(function(){
+//$('.checks').click(function(){
+     //이벤트 위임
+$('#ajaxList').on("click", ".checks", function(){
     let flag=true;
 
     $('.checks').each(function(idx, c){
@@ -168,4 +173,3 @@ $('.checks').click(function(){
 
     $("#checkAll").prop("checked", flag);
 })
-

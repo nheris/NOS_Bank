@@ -65,8 +65,8 @@
 							<th>이자율</th>
 						</tr>
 					</thead>
+					<form id="deleteForm">
 					<tbody id="ajaxList">
-						<form id="deleteForm">
 
 							<c:forEach items="${list}" var="dto">
 								<tr>
@@ -81,18 +81,9 @@
 									
 								</tr>
 							</c:forEach>
-							<%-- <c:if test="${list.size() != 10}">
-								<c:forEach begin="1" end="${11-list.size()}">
-									<tr>
-										<td style="color : white" disable>빈셀</td>
-										<td></td>
-										<td></td>
-										<td></td>
-									</tr>
-								</c:forEach>
-							</form>
-							</c:if> --%>
+
 					</tbody>
+					</form>
 				</table>
 				
 				<!-- 페이징 -->

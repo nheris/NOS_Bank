@@ -32,7 +32,8 @@ public class ReplyController {
 		
 		model.addAttribute("list", ar);
 		
-		return "wishlist/ajaxList";
+		return "products/replyListResult";
+		
 	}
 	
 	@GetMapping("list")
@@ -41,6 +42,7 @@ public class ReplyController {
 		model.addAttribute("list", ar);
 		model.addAttribute("pager", pager);
 		
-		return "wishlist/ajaxList";
+		return "products/replyListResult";
+		
 	}
 }
