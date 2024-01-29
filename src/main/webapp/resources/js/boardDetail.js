@@ -61,7 +61,9 @@ replyAdd.addEventListener("click",()=>{
         //$("#replyList").html(res)
         
         //새댓추가하고 입력한 폼 값 초기화
-        //replyForm.reset();
+        replyForm.reset();
+
+		more.setAttribute("data-replyList-page", 1);
 
     })
 
@@ -70,26 +72,45 @@ replyAdd.addEventListener("click",()=>{
 
 
 //후기댓글들 상품에 뜨게
-fetch("../reply/list?productNum="+update.getAttribute("data-product-num"), {
-	method:"GET"
-}).then(r=> r.text())
-  .then(r=>document.getElementById("replyList").innerHTML=r)
+// fetch("../reply/list?productNum="+update.getAttribute("data-product-num"), {
+// 	method:"GET"
+// }).then(r=> r.text())
+//   .then(r=>document.getElementById("replyList").innerHTML=r)
   
   
   
 //후기댓 페이징
- const more = document.getElementById("more")
+ const more = document.getElementById("more");
  //const replyList = document.getElementById("replyList");
 
- replyList.addEventListener("click", (e)=>{
+//  replyList.addEventListener("click", (e)=>{
 
-	if(e.target.getAttribute("id")=='more'){
-		let p = e.target.getAttribute('data-replyList-page');
-		fetch("../reply/list?productNum="+update.getAttribute("data-product-num")+"&page="+(p*1+1), {
-			method:"GET"
-		}).then(r=> r.text())
-		  .then(r=>
-            document.getElementById("replyList").innerHTML=r)
+// 	if(e.target.getAttribute("id")=='more'){
+// 		let p = e.target.getAttribute('data-replyList-page');
+// 		fetch("../reply/list?productNum="+update.getAttribute("data-product-num")+"&page="+(p*1+1), {
+// 			method:"GET"
+// 		}).then(r=> r.text())
+// 		  .then(r=>
+//             document.getElementById("replyList").innerHTML=r)
+// 	}
+
+//  })
+
+more.addEventListener("click", ()=>{
+    console.log('ehlsi?');
+
+	let p = more.getAttribute("data-replyList-page");//현재 페이지 번호
+	let a = more.getAttribute("data-replyList-totalPage");//전체 페이지 번호
+    p=p*1+1;
+
+	if(p>a){
+		alert('마지막 페이지 입니다');
 	}
+	more.setAttribute("data-replyList-page", p)
 
- })
+	fetch("../reply/list?productNum="+update.getAttribute("data-product-num")+"&page="+p, {
+	method:"GET"
+	})
+	.then(r=> r.text())
+  	.then(r=>$("#replyList").append(r))
+})

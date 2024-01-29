@@ -12,12 +12,20 @@ public class ProductDTO {
 	private Double productJumsu;
 	private Double productCount;
 	private Integer productSale;
-
 	
 	private List<ProductFileDTO> fileDTOs;
 	
 	private List<AccountDTO> accountDTOs;
 	
+	private List<ReplyDTO> replyDTOs;
+	
+	
+	public List<ReplyDTO> getReplyDTOs() {
+		return replyDTOs;
+	}
+	public void setReplyDTOs(List<ReplyDTO> replyDTOs) {
+		this.replyDTOs = replyDTOs;
+	}
 	public Long getProductNum() {
 		return productNum;
 	}
