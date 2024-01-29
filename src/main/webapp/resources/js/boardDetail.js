@@ -93,3 +93,7 @@ fetch("../reply/list?productNum="+update.getAttribute("data-product-num"), {
 	}
 
  })
+
+ function getReplyList(page,num){
+    
+ }
