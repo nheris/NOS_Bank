@@ -28,4 +28,9 @@
 		WHERE PRODUCTNUM=#{productNum}
 	</select>
 	
+	
+	<!-- delete -->
+	<delete id="setDelete" parameterType="ReplyDTO">
+  		DELETE REPLY WHERE REPLYNUM=#{replyNum}
+  	</delete>
 </mapper>

@@ -21,8 +21,7 @@ import com.winter.app.util.Pager;
 public class ProductController {
 	@Autowired
 	private ProductService productService;
-	@Autowired
-	private ReplyService replyService;
+	
 	
 	//list
 	@RequestMapping (value = "list", method = RequestMethod.GET)
@@ -41,14 +40,8 @@ public class ProductController {
 		productDTO = productService.detail(productDTO);
 		model.addAttribute("dto", productDTO);
 		
-		//처음 가지고 올때만 댓글 목록도 조회
-		ReplyDTO replyDTO = new ReplyDTO();
-		Pager pager = new Pager();
-		replyDTO.setProductNum(productDTO.getProductNum());
-		List<ReplyDTO> replyList = replyService.getList(replyDTO, pager);
+//		//처음 가지고 올때만 댓글 목록도 조회
 
-		model.addAttribute("pager", pager);
-		model.addAttribute("replyList", replyList);
 		
 		return model;
 	}
