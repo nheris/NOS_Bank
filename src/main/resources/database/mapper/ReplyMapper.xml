@@ -33,4 +33,10 @@
 	<delete id="setDelete" parameterType="ReplyDTO">
   		DELETE REPLY WHERE REPLYNUM=#{replyNum}
   	</delete>
+  	
+  	<!-- update -->
+  	<update id="setUpdate" parameterType="ReplyDTO">
+  		UPDATE REPLY SET REPLYCONTENTS=#{replyContents}
+  		WHERE REPLYNUM = #{replyNum}
+  	</update>
 </mapper>

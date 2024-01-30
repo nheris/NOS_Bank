@@ -13,11 +13,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.winter.app.member.MemberDTO;
 import com.winter.app.util.Pager;
 
-@Controller
+@RestController //안에 있는 모든 메서드 @ResponseBody 포함됨. 이제 각 메서드에 안넣어도됨
 @RequestMapping("/reply/*")
 public class ReplyController {
 
@@ -77,5 +78,13 @@ public class ReplyController {
 		map.put("pager", pager);
 
 		return map;
+	}
+	
+	//update
+	@PostMapping("update")
+	@ResponseBody
+	public int setUpdate (ReplyDTO replyDTO) throws Exception{
+		int result = replyService.setUpdate(replyDTO);
+		return result;
 	}
 }

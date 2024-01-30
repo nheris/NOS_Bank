@@ -29,4 +29,9 @@ public class ReplyDAO {
 	public int setDelete(ReplyDTO replyDTO)throws Exception{
 		return sqlSession.delete(NAMESPACE+"setDelete", replyDTO);
 	}
+	
+	//update
+	public int setUpdate(ReplyDTO replyDTO) throws Exception{
+		return sqlSession.delete(NAMESPACE+"setUpdate", replyDTO);
+	}
 }

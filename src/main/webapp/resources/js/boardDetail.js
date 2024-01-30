@@ -119,11 +119,12 @@ function makeList(r){
         let tr = document.createElement("tr");
 
         let td = document.createElement("td");
-        td.innerHTML=r[i].userName;
-        tr.append(td);
-
-        td = document.createElement("td");
+        td.setAttribute("id","replyContents"+r[i].replyNum)
         td.innerHTML=r[i].replyContents;
+        tr.append(td);
+        
+        td = document.createElement("td");
+        td.innerHTML=r[i].userName;
         tr.append(td);
 
         td = document.createElement("td");
@@ -149,6 +150,9 @@ function makeList(r){
 			b.innerHTML="수정";
 			b.setAttribute("class", "update")
 			b.setAttribute("data-replyNum", r[i].replyNum)
+            //data-bs-toggle="modal" data-bs-target="#exampleModal"
+            b.setAttribute("data-bs-toggle","modal")
+            b.setAttribute("data-bs-target","#replyUpdateModal")
 			td.append(b);
 			tr.append(td)
 		}
@@ -178,3 +182,54 @@ $("#replyList").on("click", ".del", function(){
 })
 
 
+//수정버튼
+replyList.addEventListener("click",(e)=>{
+    if(e.target.classList.contains("update")){
+        //alert('asdf');
+        //모달 textarea
+        const replyUpdateContents = document.getElementById("replyUpdateContents");
+        //td의 id 생성
+        let i ='replyContents'+e.target.getAttribute("data-replyNum");
+        //해당 id의 td element
+        const r = document.getElementById(i);
+        //alert(r.innerHTML);
+        replyUpdateContents.value = r.innerHTML;
+        document.getElementById("replyUpdateNum").value = e.target.getAttribute("data-replyNum");
+        //td의 다음 형제의 contents //userName 파라미터 넘어가는지 확인
+        document.getElementById("replyWriter").value = r.nextSibling.innerHTML;
+    }
+})
+
+//모달수정버튼
+const replyUpdateButton = document.getElementById("replyUpdateButton");
+
+replyUpdateButton.addEventListener("click",()=>{
+    //alert("UPDATE");
+    let replyUpdateForm = document.getElementById("replyUpdateForm");
+    let formData = new FormData(replyUpdateForm);
+    fetch("../reply/update",{
+        method:"post",
+        body: formData
+    })
+    .then(r=>r.json())
+    .then(r=>{
+        //alert(r)//디비수정완
+        if(r>0){
+
+            //모달창 닫고 수정내용 화면에 보이게
+        
+            //td의 id가져와 내용물 변경
+            let i = "replyContents"+document.getElementById("replyUpdateNum").value;
+            i= document.getElementById(i);
+            i.innerHTML = document.getElementById("replyUpdateContents").value
+        }else{
+            alert('수정 실패');
+        }
+        
+        //폼내용 초기화
+        replyUpdateForm.reset();
+        //modal창 닫기 버튼 강제 누름
+        document.getElementById("replyCloseButton").click();
+
+    })
+})

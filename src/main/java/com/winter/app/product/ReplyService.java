@@ -34,4 +34,9 @@ public class ReplyService {
 	public int setDelete(ReplyDTO replyDTO)throws Exception{
 		return replyDAO.setDelete(replyDTO);
 	}
+	
+	//update
+	public int setUpdate(ReplyDTO replyDTO)throws Exception{
+		return replyDAO.setUpdate(replyDTO);
+	}
 }
