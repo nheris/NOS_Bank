@@ -51,7 +51,7 @@ public class MemberService {
 			if(m.getPassword().equals(memberDTO.getPassword())) {
 				//공백으로 회원정보 수정했을때 다시로그인해야 뜨는거..수정?
 				// 걍 @GetMapping("mypage")에서 새로 db 에서 꺼낼거임
-				return memberDTO;
+				return m;
 			}else {
 				m=null;
 				//return null;

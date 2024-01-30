@@ -24,6 +24,8 @@
 	<beans:bean class="com.winter.app.interceptors.TestInterceptors" id="TestInterceptors"></beans:bean>
 	
 	<interceptors>
+		<!-- 작성 순서대로 적용 -->
+	
 		<interceptor>
 			<!-- 언제(어떤 url때) 생성할거냐 -->
 			<mapping path="/**"/>
@@ -42,6 +44,11 @@
 			<mapping path="/member/delete"/>
 			
 			<mapping path="/products/*"/>
+			
+			<mapping path="/notice/add"/>
+			<mapping path="/notice/update"/>
+			<mapping path="/notice/delete"/>
+			
 			<exclude-mapping path="/qna/list"/>
 			<exclude-mapping path="/products/list"/>
 			<beans:ref bean="authenticationInterCeptor"/>
@@ -55,6 +62,15 @@
 			<mapping path="/notice/delete"/>
 			<beans:ref bean="writerCheck"/>
 		</interceptor>
+		
+		<!-- 관리자만 가능 -->
+		<interceptor>
+			<mapping path="/notice/add"/>
+			<mapping path="/notice/update"/>
+			<mapping path="/notice/delete"/>
+			<beans:ref bean="adminCheckInterceptor"/>
+		</interceptor>
+		
 	</interceptors>
 	
 	

@@ -23,6 +23,12 @@
 		FROM MEMBER
 			 LEFT JOIN AVATAR
 			 USING (USERNAME)
+			 
+			 INNER JOIN MEMBERROLE MR
+			 USING (USERNAME)
+			 INNER JOIN
+			 ROLE R
+			 USING (ROLENUM)
 		WHERE USERNAME=#{userName}
 	</select>
 	<resultMap type="MemberDTO" id="getDetailResult">
@@ -32,12 +38,16 @@
 		<result column="EMAIL" property="email"/>
 		<result column="PHONE" property="phone"/>
 		<result column="ADDRESS" property="address"/>
+		<!-- association 다음 collection 와야함 반대는 에러 -->
 		<association property="avatarDTO" javaType="AvatarDTO">
 			<id column="FILENUM" property="fileNum"/>
 			<result column="FILENAME" property="fileName"/>
 			<result column="ORINAME" property="oriName"/>
-			
 		</association>
+		<collection property="roleDTOs" javaType="List" ofType="RoleDTO">
+			<id column="ROLENUM" property="roleNum"/>	
+			<result column="ROLENAME" property="roleName"/>
+		</collection>
 	</resultMap>
 	
 	<!-- UPDATE -->
@@ -61,4 +71,9 @@
 		WHERE USERNAME = #{userName}
 	</update>
 	
+	<!--  -->
+	<insert id="setMemberRole" parameterType="MemberDTO">
+		INSERT INTO MEMBER VALUES
+  		(#{userName}, (SELECT ROLENUM FROM ROLE WHERE ROLENAME ='ROLE_MEMBER'))
+	</insert>
 </mapper>
