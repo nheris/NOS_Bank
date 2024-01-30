@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.winter.app.errors.MemberLoginException;
 import com.winter.app.util.FileManager;
 
 @Service
@@ -53,9 +54,14 @@ public class MemberService {
 				// 걍 @GetMapping("mypage")에서 새로 db 에서 꺼낼거임
 				return m;
 			}else {
+				//pw가 틀림
 				m=null;
+				throw new MemberLoginException("PW 확인");
 				//return null;
 			}
+		}else {
+			//id가 틀림
+			throw new MemberLoginException("ID 확인");
 		}
 		return m;
 	}

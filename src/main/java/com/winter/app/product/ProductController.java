@@ -1,10 +1,12 @@
 package com.winter.app.product;
 
+import java.sql.SQLDataException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,12 +24,32 @@ public class ProductController {
 	@Autowired
 	private ProductService productService;
 	
+	//예외 처리 메서드------------------------------
+	@ExceptionHandler(NullPointerException.class)//발생한예외Class명.발생하면 밑 실행
+	public String nullHandler() {
+		return "errors/error";
+	}
+	@ExceptionHandler(Exception.class)//부모
+	public String Handler() {
+		return "errors/error";
+	}
+	//일일이 처리 귀찮으니 예외 전역처리  @ControllerAdvice 어느 컨트롤러든 여기서 처리
+	
+	//-----------------------------------------
 	
 	//list
 	@RequestMapping (value = "list", method = RequestMethod.GET)
 	public ModelAndView getList(ModelAndView mv, Pager pager) throws Exception{
 		
 		List<ProductDTO> ar = productService.getList(pager);
+		
+		//강제 예외 발생
+		if(ar.size()%2==0) {
+			throw new NullPointerException();
+		}else if(ar.size()%2 ==1) {
+			throw new SQLDataException();
+		}
+		
 		mv.addObject("pager", pager);
 		mv.addObject("list", ar);
 		mv.setViewName("products/list");

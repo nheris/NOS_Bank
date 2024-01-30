@@ -41,6 +41,10 @@ public class MemberController {
 	}
 	
 	//login
+	
+	
+	
+	
 	@GetMapping("login")
 	public void getLogin() throws Exception{
 		
