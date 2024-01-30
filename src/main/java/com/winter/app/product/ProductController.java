@@ -44,11 +44,11 @@ public class ProductController {
 		List<ProductDTO> ar = productService.getList(pager);
 		
 		//강제 예외 발생
-		if(ar.size()%2==0) {
-			throw new NullPointerException();
-		}else if(ar.size()%2 ==1) {
-			throw new SQLDataException();
-		}
+//		if(ar.size()%2==0) {
+//			throw new NullPointerException();
+//		}else if(ar.size()%2 ==1) {
+//			throw new SQLDataException();
+//		}
 		
 		mv.addObject("pager", pager);
 		mv.addObject("list", ar);

@@ -63,7 +63,7 @@ public class MemberService {
 			//id가 틀림
 			throw new MemberLoginException("ID 확인");
 		}
-		return m;
+		//return m;
 	}
 	
 	//update

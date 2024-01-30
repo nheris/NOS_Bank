@@ -1,19 +1,17 @@
 package com.winter.app.member;
 
-import java.lang.ProcessBuilder.Redirect;
-
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.winter.app.board.notice.NoticeDTO;
+import com.winter.app.errors.MemberLoginException;
 
 @Controller
 @RequestMapping ("/member/*")
@@ -41,14 +39,18 @@ public class MemberController {
 	}
 	
 	//login
-	
-	
-	
-	
 	@GetMapping("login")
 	public void getLogin() throws Exception{
 		
 	}
+	
+	@ExceptionHandler(MemberLoginException.class)
+	public String memberLoginException(Exception e, Model model) {
+		String m = e.getMessage();
+		model.addAttribute("msg", m);
+		return "member/login";
+	}
+	
 	@PostMapping("login")
 	public String getLogin(MemberDTO memberDTO, HttpSession session, Model model) throws Exception{
 		memberDTO = memberService.getLogin(memberDTO);

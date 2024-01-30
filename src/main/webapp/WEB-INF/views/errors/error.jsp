@@ -10,24 +10,24 @@
         <meta name="author" content="" />
         <title>Personal - Start Bootstrap Theme</title>
 	<!-- 사용전 경로를 꼭 수정하세요/ -->
-	<c:import url="./head_css.jsp"></c:import>
+	<c:import url="../temps/head_css.jsp"></c:import>
 	
     </head>
     <body class="d-flex flex-column h-100">
         <main class="flex-shrink-0">
             <!-- Navigation-->
             <!-- 사용전 경로를 꼭 수정하세요/ -->
-            <c:import url="./header.jsp"></c:import>
+            <c:import url="../temps/header.jsp"></c:import>
 			
 			<div>
 				<h3>요청하신 페이지를 찾을 수 없습니다.</h3>
-				<a href="/"></a>
+				<a href="/">Home</a>
 			</div>
 			
 			
         </main>
         <!-- Footer-->
         <!-- 사용전 경로를 꼭 수정하세요/ -->
-		<c:import url="./footer.jsp"></c:import>
+		<c:import url="../temps/footer.jsp"></c:import>
     </body>
 </html>
